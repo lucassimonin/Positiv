@@ -14,7 +14,7 @@ L'application affiche automatiquement une affirmation chaque jour sur votre widg
 
 📸 Exemples :
 
-![Affirmation Edit](https://github.com/lucassimonin/positiv/images/1.jpg "Affirmation Edit")
+![Affirmation Edit](https://github.com/lucassimonin/positiv/blob/main/images/1.jpg "Affirmation Edit")
 
 
 
@@ -28,7 +28,7 @@ Le widget affiche automatiquement le nombre de jours restants ainsi que les heur
 
 📸 Exemples :
 
-![Countdown Edit](https://github.com/lucassimonin/positiv/images/2.jpg "Countdown Edit")
+![Countdown Edit](https://github.com/lucassimonin/positiv/blob/main/images/2.jpg "Countdown Edit")
 
 
 🔒 Widgets iOS 18+
@@ -82,7 +82,7 @@ Chaque jour, prenez un instant pour vous rappeler pourquoi vous avancez.
 Positiv vous aide à garder votre cap et votre énergie — une affirmation et un objectif à la fois.
 
 
-![Widget 1](https://github.com/lucassimonin/positiv/images/3.jpg "Widget 1")
-![Widget 2](https://github.com/lucassimonin/positiv/images/4.jpg "Widget 2")
+![Widget 1](https://github.com/lucassimonin/positiv/blob/main/images/3.jpg "Widget 1")
+![Widget 2](https://github.com/lucassimonin/positiv/blob/main/images/4.jpg "Widget 2")
 
 
