@@ -138,7 +138,7 @@ struct CountdownCardView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
 
                 // Droite centrée
-                VStack(alignment: .center, spacing: 6) {
+                VStack(alignment: .center, spacing: 4) {
                     let c = componentsLeft(now: entry.date, to: entry.eventDate)
                     HStack(alignment: .firstTextBaseline, spacing: 4) {
                         Text("\(c.days)")
@@ -149,14 +149,14 @@ struct CountdownCardView: View {
                             .font(.caption2).bold()
                             .foregroundStyle(.secondary)
                     }
-                    HStack(spacing: 8) {
+                    HStack(alignment: .firstTextBaseline, spacing: 4) {
                         Text("\(c.hours)h"); Text("·"); Text("\(c.minutes)min")
                     }
                     .font(.caption2)
                     .foregroundStyle(.secondary)
                     .multilineTextAlignment(.center)
                 }
-                .frame(minWidth: 108, alignment: .center)
+                .frame(minWidth: 150, alignment: .center)
             }
             .padding(.horizontal, 14)
             .padding(.vertical, 12)

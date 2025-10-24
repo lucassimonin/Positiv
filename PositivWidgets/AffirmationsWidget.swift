@@ -87,15 +87,13 @@ struct LockScreenAffirmationView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 2) {
-            Text("Affirmation")
-                .font(.caption2)
+            Text("Affirmation du jour")
+                .font(.system(size: 12, weight: .bold, design: .rounded))
                 .foregroundStyle(.secondary)
 
             Text(entry.text)
-                .font(.caption)
-                .fontWeight(.medium)
+                .font(.system(size: 11, weight: .regular, design: .rounded))
                 .multilineTextAlignment(.leading)
-                .lineLimit(2)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .containerBackground(for: .widget) {
