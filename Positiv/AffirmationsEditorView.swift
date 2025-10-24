@@ -1,46 +1,39 @@
-//
-//  AffirmationsView.swift
-//  Positiv
-//
-//  Created by DnD-Luk on 23/10/2025.
-//
-
 import SwiftUI
-import WidgetKit
-
-let affirmationsKey = "affirmations"
-
-func saveAffirmations(_ list: [String]) {
-    let ud = UserDefaults(suiteName: AppConfig.appGroup)!
-    ud.set(list, forKey: affirmationsKey)
-    // avertir le widget que le contenu a changé
-    WidgetCenter.shared.reloadTimelines(ofKind: "AffirmationsWidget")
-}
 
 struct AffirmationsEditorView: View {
-    @State private var items: [String] = loadInitial()
+    @StateObject private var store = AffirmationStore()
+    @State private var draft = ""
 
-        var body: some View {
+    var body: some View {
+        NavigationStack {
             List {
-                ForEach(items.indices, id: \.self) { i in
-                    TextField("Affirmation", text: Binding(
-                        get: { items[i] },
-                        set: { items[i] = $0 }
-                    ))
+                Section {
+                    HStack(spacing: 8) {
+                        TextField("Ajouter une affirmation…", text: $draft, axis: .vertical)
+                            .lineLimit(1...3)
+                            .textInputAutocapitalization(.sentences)
+                        Button {
+                            store.add(draft); draft = ""
+                        } label: { Image(systemName: "plus.circle.fill") }
+                        .disabled(draft.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+                    }
                 }
-                .onDelete { items.remove(atOffsets: $0) }
 
-                Button("Ajouter") { items.append("Nouvelle affirmation") }
+                Section("Mes affirmations") {
+                    ForEach($store.items) { $item in    // ✅ ID stable → clavier OK
+                        TextField("Affirmation", text: $item.text, axis: .vertical)
+                            .lineLimit(1...3)
+                            .textInputAutocapitalization(.sentences)
+                            .onChange(of: item.text) { _, new in           // ⬅️ nouvelle API iOS 17
+                                store.update(item, text: new)
+                            }
+                    }
+                    .onDelete(perform: store.delete)
+                    .onMove(perform: store.move)
+                }
             }
-            .toolbar {
-                Button("Enregistrer") { saveAffirmations(items) }
-            }
+            .navigationTitle("Affirmations")
+            .toolbar { EditButton() }
         }
-
-        static func loadInitial() -> [String] {
-            let ud = UserDefaults(suiteName: AppConfig.appGroup)
-            return ud?.stringArray(forKey: affirmationsKey) ?? [
-                "Je progresse chaque jour."
-            ]
-        }
+    }
 }

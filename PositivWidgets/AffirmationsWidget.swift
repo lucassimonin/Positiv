@@ -1,70 +1,133 @@
 import WidgetKit
 import SwiftUI
 
-let affirmationsKey = "affirmations"
-
 struct AffirmationEntry: TimelineEntry {
     let date: Date
     let text: String
 }
 
-struct AffirmationsProvider: TimelineProvider {
-    static let affirmations = [
-        "Je progresse un peu chaque jour."
-    ]
-
+// MARK: - Provider
+struct AffirmationProvider: TimelineProvider {
     func placeholder(in context: Context) -> AffirmationEntry {
-        AffirmationEntry(date: .now, text: "Je suis serein·e et présent·e.")
+        AffirmationEntry(date: .now, text: "Tu es capable de grandes choses ✨")
     }
 
     func getSnapshot(in context: Context, completion: @escaping (AffirmationEntry) -> Void) {
-        completion(AffirmationEntry(date: .now, text: Self.affirmations.randomElement() ?? "Je m’autorise à réussir."))
+        completion(entryForNow())
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<AffirmationEntry>) -> Void) {
-        
-        let now = Date()
-        let ud  = UserDefaults(suiteName: AppConfig.appGroup)
-        let list = ud?.stringArray(forKey: affirmationsKey) ?? Self.affirmations
-        let text = list.randomElement() ?? "Je m’autorise à réussir."
-        let entry = AffirmationEntry(date: .now, text: text)
-        // Prochain refresh à minuit
+        var entries: [AffirmationEntry] = []
         let cal = Calendar.current
-        let nextMidnight = cal.nextDate(after: now, matching: DateComponents(hour: 0, minute: 0, second: 0), matchingPolicy: .nextTime) ?? now.addingTimeInterval(86_400)
-        completion(Timeline(entries: [entry], policy: .after(nextMidnight)))
+        let start = cal.startOfDay(for: Date())
+        for i in 0..<7 {
+            let day = cal.date(byAdding: .day, value: i, to: start)!
+            entries.append(AffirmationEntry(date: day, text: pick(for: day)))
+        }
+        completion(Timeline(entries: entries, policy: .atEnd))
+    }
+
+    // helpers
+    private func entryForNow() -> AffirmationEntry {
+        AffirmationEntry(date: .now, text: pick(for: Date()))
+    }
+
+    private func loadList() -> [String] {
+        let ud = UserDefaults(suiteName: AppConfig.appGroup)
+        // Nouveau format: [AffirmationItem]
+        if let data = ud?.data(forKey: AppConfig.Keys.affirmations),
+           let items = try? JSONDecoder().decode([AffirmationItem].self, from: data),
+           !items.isEmpty {
+            return items.map { $0.text }
+        }
+        // Ancien format: [String]
+        if let arr = ud?.stringArray(forKey: AppConfig.Keys.affirmations), !arr.isEmpty {
+            return arr
+        }
+        return ["Je progresse chaque jour ✨", "Je mérite le meilleur 💖"]
+    }
+
+    private func pick(for date: Date) -> String {
+        let list = loadList(); guard !list.isEmpty else { return "…" }
+        let idx = Calendar.current.ordinality(of: .day, in: .era, for: date) ?? 0
+        return list[idx % list.count]
     }
 }
 
-struct AffirmationsWidgetView: View {
-    var entry: AffirmationEntry
+
+struct AffirmationCardView: View {
+    let entry: AffirmationEntry
 
     var body: some View {
-        ZStack {
-            
-            VStack(alignment: .leading, spacing: 2) {
-                Text("Affirmation")
-                    .font(.caption).bold().opacity(0.6)
-                Text(entry.text)
-                    .font(.headline)
-                    .minimumScaleFactor(0.85)
-                    .lineLimit(4)
+        VStack(alignment: .leading, spacing: 8) {
+            Text("AFFIRMATION DU JOUR")
+                .font(.caption2)
+                .bold()
+                .foregroundStyle(.secondary)
+
+            Text(entry.text)
+                .font(.title3)
+                .fontWeight(.semibold)
+                .foregroundStyle(.primary)
+                .minimumScaleFactor(0.7)
+                .multilineTextAlignment(.leading)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(.vertical, 4)
+        .padding(.horizontal, 2)
+        // ✅ même fond que le countdown
+        .containerBackground(for: .widget) {
+            Rectangle().fill(.ultraThinMaterial)
+        }
+    }
+}
+
+struct LockScreenAffirmationView: View {
+    let entry: AffirmationEntry
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 2) {
+            Text("Affirmation")
+                .font(.caption2)
+                .foregroundStyle(.secondary)
+
+            Text(entry.text)
+                .font(.caption)
+                .fontWeight(.medium)
+                .multilineTextAlignment(.leading)
+                .lineLimit(2)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .containerBackground(for: .widget) {
+            EmptyView() // fond système lock screen
+        }
+    }
+}
+
+struct AffirmationRootView: View {
+    @Environment(\.widgetFamily) private var family
+    let entry: AffirmationEntry
+
+    var body: some View {
+        Group {
+            switch family {
+            case .accessoryRectangular:
+                LockScreenAffirmationView(entry: entry)
+            default:
+                AffirmationCardView(entry: entry)
             }
-            
         }
     }
 }
 
 struct AffirmationsWidget: Widget {
     var body: some WidgetConfiguration {
-        StaticConfiguration(kind: "AffirmationsWidget", provider: AffirmationsProvider()) { entry in
-            // Adaptation minimaliste pour Lock Screen
-            Link(destination: URL(string: "myapp://affirmations")!) {
-                AffirmationsWidgetView(entry: entry)
-            }
-            
+        StaticConfiguration(kind: AppConfig.WidgetKind.affirmations,
+                            provider: AffirmationProvider()) { entry in
+            AffirmationRootView(entry: entry)
         }
-        .configurationDisplayName("Affirmations (pastel)")
-        .description("Une affirmation positive, renouvelée chaque jour.")
+        .configurationDisplayName("Affirmation positive")
+        .description("Affiche une phrase motivante pour bien commencer la journée.")
         .supportedFamilies([.systemSmall, .systemMedium, .accessoryRectangular])
     }
 }

@@ -8,6 +8,23 @@ struct CountdownEntry: TimelineEntry {
     let eventDate: Date
 }
 
+fileprivate func componentsLeft(now: Date, to target: Date) -> (days: Int, hours: Int, minutes: Int) {
+    let cal = Calendar.current
+    let d = max(0, cal.dateComponents([.day], from: cal.startOfDay(for: now),
+                                      to: cal.startOfDay(for: target)).day ?? 0)
+    let comps = cal.dateComponents([.hour, .minute], from: now, to: target)
+    let h = max(0, comps.hour ?? 0) % 24
+    let m = max(0, comps.minute ?? 0) % 60
+    return (d, h, m)
+}
+
+fileprivate func formatDate(_ d: Date) -> String {
+    let f = DateFormatter()
+    f.locale = Locale(identifier: "fr_FR")
+    f.dateFormat = "d MMMM yyyy"
+    return f.string(from: d)
+}
+
 // MARK: - Provider (lit depuis l’App Group)
 struct CountdownProvider: TimelineProvider {
     func placeholder(in context: Context) -> CountdownEntry {
@@ -59,106 +76,124 @@ struct CountdownProvider: TimelineProvider {
     }
 }
 
+struct LockScreenCountdownView: View {
+    let entry: CountdownEntry
+
+    var body: some View {
+        let c = componentsLeft(now: entry.date, to: entry.eventDate)
+
+        VStack(alignment: .leading, spacing: 2) {
+            // Titre
+            Text(entry.title)
+                .font(.caption2).bold()
+                .lineLimit(1)
+
+            // Date
+            Text(formatDate(entry.eventDate))
+                .font(.caption2)
+                .foregroundStyle(.secondary)
+
+            // Ligne jours + heures/min
+            HStack(alignment: .firstTextBaseline, spacing: 4) {
+                HStack(spacing: 3) {
+                    Text("\(c.days)")
+                        .font(.system(size: 20, weight: .heavy, design: .rounded))
+                        .monospacedDigit()
+                    Text("j").font(.caption2).bold()
+                }
+
+                Spacer(minLength: 6)
+
+                HStack(spacing: 6) {
+                    Text("\(c.hours)h")
+                    Text("·")
+                    Text("\(c.minutes)min")
+                }
+                .font(.caption2)
+                .foregroundStyle(.secondary)
+            }
+        }
+        .containerBackground(for: .widget) {
+                    EmptyView()  // fond géré par le système (verre lock screen)
+                }
+    }
+}
+
 // MARK: - Vue (design de la capture)
 struct CountdownCardView: View {
     let entry: CountdownEntry
 
-    private let cardPink = Color(red: 1.00, green: 0.78, blue: 0.86)
-    private let textPrimary = Color(red: 0.12, green: 0.16, blue: 0.22)
+    
+    private let textPrimary   = Color.black.opacity(0.85)
     private let textSecondary = Color.black.opacity(0.55)
 
     var body: some View {
-        ZStack {
-            // ✅ Fond rose + voile blanc translucide
-            RoundedRectangle(cornerRadius: 22, style: .continuous)
-                .fill(LinearGradient(colors: [cardPink, cardPink.opacity(0.92)],
-                                     startPoint: .topLeading, endPoint: .bottomTrailing))
-                .overlay(
-                    RoundedRectangle(cornerRadius: 22, style: .continuous)
-                        .fill(Color.white.opacity(0.25)) // effet glass clair
-                )
-                .background(.ultraThinMaterial) // léger flou derrière
-
             HStack(alignment: .top, spacing: 10) {
-                // ⬅️ Gauche
+                // Gauche
                 VStack(alignment: .leading, spacing: 6) {
-                    Text("COMPTE À REBOURS")
-                        .font(.caption2).bold()
-                        .foregroundStyle(textSecondary)
-
-                    Text(entry.title)
-                        .font(.headline).bold()
-                        .foregroundStyle(textPrimary)
-                        .lineLimit(2)
-                        .minimumScaleFactor(0.9)
-
-                    Text(formatDate(entry.eventDate))
-                        .font(.caption)
-                        .foregroundStyle(textSecondary)
+                    Text("COMPTE À REBOURS").font(.caption2).bold().foregroundStyle(.secondary)
+                    Text(entry.title).font(.headline).bold().foregroundStyle(.primary)
+                    Text(formatDate(entry.eventDate)).font(.caption).foregroundStyle(.secondary)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
 
-                // ➡️ Droite
-                VStack(alignment: .center, spacing: 6) { // ⬅️ centré
+                // Droite centrée
+                VStack(alignment: .center, spacing: 6) {
                     let c = componentsLeft(now: entry.date, to: entry.eventDate)
-
-                    // Ligne jours
                     HStack(alignment: .firstTextBaseline, spacing: 4) {
                         Text("\(c.days)")
                             .font(.system(size: 44, weight: .heavy, design: .rounded))
                             .monospacedDigit()
+                            .foregroundStyle(.primary)
                         Text("JOURS")
                             .font(.caption2).bold()
-                            .foregroundStyle(textSecondary)
+                            .foregroundStyle(.secondary)
                     }
-
-                    // ✅ Centré sous "jours"
                     HStack(spacing: 8) {
-                        Text("\(c.hours)h")
-                        Text("·")
-                        Text("\(c.minutes)min")
+                        Text("\(c.hours)h"); Text("·"); Text("\(c.minutes)min")
                     }
                     .font(.caption2)
-                    .foregroundStyle(textSecondary)
+                    .foregroundStyle(.secondary)
                     .multilineTextAlignment(.center)
                 }
-                .frame(minWidth: 108, alignment: .center) // ⬅️ centrage horizontal
+                .frame(minWidth: 108, alignment: .center)
             }
             .padding(.horizontal, 14)
             .padding(.vertical, 12)
         }
-    }
-
-    // Helpers
-    private func componentsLeft(now: Date, to target: Date) -> (days: Int, hours: Int, minutes: Int) {
-        let cal = Calendar.current
-        let d = max(0, cal.dateComponents([.day], from: cal.startOfDay(for: now),
-                                          to: cal.startOfDay(for: target)).day ?? 0)
-        let comps = cal.dateComponents([.hour, .minute], from: now, to: target)
-        let h = max(0, comps.hour ?? 0) % 24
-        let m = max(0, comps.minute ?? 0) % 60
-        return (d, h, m)
-    }
-
-    private func formatDate(_ d: Date) -> String {
-        let f = DateFormatter()
-        f.locale = Locale(identifier: "fr_FR")
-        f.dateFormat = "d MMMM yyyy"
-        return f.string(from: d)
-    }
 }
 
 
 // MARK: - Widget
+
 struct EventCountdownWidget: Widget {
     var body: some WidgetConfiguration {
-        StaticConfiguration(kind: AppConfig.WidgetKind.countdown, provider: CountdownProvider()) { entry in
-            // Si tu veux ouvrir l'app au tap, entoure par un Link(…)
-            CountdownCardView(entry: entry)
+        StaticConfiguration(kind: AppConfig.WidgetKind.countdown,
+                            provider: CountdownProvider()) { entry in
+            CountdownRootView(entry: entry)
         }
         .configurationDisplayName("Compte à rebours")
         .description("Affiche le titre, la date et les jours restants.")
-        .supportedFamilies([.systemMedium])
-        .contentMarginsDisabled()                  // iOS 17+ : pas de marges
+        .supportedFamilies([.systemMedium, .accessoryRectangular])   // ⬅️ Lock Screen
+        .contentMarginsDisabled()
+    }
+}
+
+
+struct CountdownRootView: View {
+    @Environment(\.widgetFamily) private var family
+    let entry: CountdownEntry
+
+    var body: some View {
+        switch family {
+        case .accessoryRectangular:
+            LockScreenCountdownView(entry: entry)
+        default:
+            // Home Screen (ta vue existante)
+            CountdownCardView(entry: entry)
+                .containerBackground(for: .widget) {    // verre système
+                    Rectangle().fill(.ultraThinMaterial)
+                }
+        }
     }
 }
