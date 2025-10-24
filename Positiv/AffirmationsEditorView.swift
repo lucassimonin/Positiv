@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  AffirmationsView.swift
 //  Positiv
 //
 //  Created by DnD-Luk on 23/10/2025.
@@ -8,17 +8,16 @@
 import SwiftUI
 import WidgetKit
 
-let suite = "group.com.tonbundle.shared"
 let affirmationsKey = "affirmations"
 
 func saveAffirmations(_ list: [String]) {
-    let ud = UserDefaults(suiteName: suite)!
+    let ud = UserDefaults(suiteName: AppConfig.appGroup)!
     ud.set(list, forKey: affirmationsKey)
     // avertir le widget que le contenu a changé
     WidgetCenter.shared.reloadTimelines(ofKind: "AffirmationsWidget")
 }
 
-struct ContentView: View {
+struct AffirmationsEditorView: View {
     @State private var items: [String] = loadInitial()
 
         var body: some View {
@@ -39,15 +38,9 @@ struct ContentView: View {
         }
 
         static func loadInitial() -> [String] {
-            let ud = UserDefaults(suiteName: suite)
+            let ud = UserDefaults(suiteName: AppConfig.appGroup)
             return ud?.stringArray(forKey: affirmationsKey) ?? [
-                "Je progresse chaque jour.",
-                "Je mérite la réussite.",
-                "Je choisis la bienveillance."
+                "Je progresse chaque jour."
             ]
         }
-}
-
-#Preview {
-    ContentView()
 }

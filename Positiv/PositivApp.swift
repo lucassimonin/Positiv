@@ -11,7 +11,7 @@ import SwiftUI
 struct PositivApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainTabs()
         }
     }
 }

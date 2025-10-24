@@ -6,19 +6,18 @@
 //
 
 import SwiftUI
+import WidgetKit
 
-struct ContentView: View {
+struct MainTabs: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .padding()
-    }
-}
+        TabView {
+            AffirmationsEditorView()
+                .tabItem { Label("Affirmations", systemImage: "text.quote") }
 
-#Preview {
-    ContentView()
+            NavigationStack {
+                CountdownEditorView()
+            }
+            .tabItem { Label("Countdown", systemImage: "calendar.badge.clock") }
+        }
+    }
 }
