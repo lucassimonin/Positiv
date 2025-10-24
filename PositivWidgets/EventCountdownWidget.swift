@@ -69,13 +69,19 @@ struct CountdownCardView: View {
 
     var body: some View {
         ZStack {
+            // ✅ Fond rose + voile blanc translucide
             RoundedRectangle(cornerRadius: 22, style: .continuous)
                 .fill(LinearGradient(colors: [cardPink, cardPink.opacity(0.92)],
                                      startPoint: .topLeading, endPoint: .bottomTrailing))
+                .overlay(
+                    RoundedRectangle(cornerRadius: 22, style: .continuous)
+                        .fill(Color.white.opacity(0.25)) // effet glass clair
+                )
+                .background(.ultraThinMaterial) // léger flou derrière
 
-            HStack(alignment: .top, spacing: 10) {     // ⬅️ moins d’espace entre colonnes
-                // Gauche
-                VStack(alignment: .leading, spacing: 6) { // ⬅️ stack plus serré
+            HStack(alignment: .top, spacing: 10) {
+                // ⬅️ Gauche
+                VStack(alignment: .leading, spacing: 6) {
                     Text("COMPTE À REBOURS")
                         .font(.caption2).bold()
                         .foregroundStyle(textSecondary)
@@ -83,7 +89,7 @@ struct CountdownCardView: View {
                     Text(entry.title)
                         .font(.headline).bold()
                         .foregroundStyle(textPrimary)
-                        .lineLimit(2)                    // ⬅️ autorise 2 lignes
+                        .lineLimit(2)
                         .minimumScaleFactor(0.9)
 
                     Text(formatDate(entry.eventDate))
@@ -92,44 +98,42 @@ struct CountdownCardView: View {
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
 
-                // Droite : J / h / min
-                VStack(alignment: .trailing, spacing: 6) {
+                // ➡️ Droite
+                VStack(alignment: .center, spacing: 6) { // ⬅️ centré
                     let c = componentsLeft(now: entry.date, to: entry.eventDate)
-                    // Ligne 1 : JOURS gros
+
+                    // Ligne jours
                     HStack(alignment: .firstTextBaseline, spacing: 4) {
                         Text("\(c.days)")
-                            .font(.system(size: 42, weight: .heavy, design: .rounded)) // ⬅️ un poil plus petit
+                            .font(.system(size: 44, weight: .heavy, design: .rounded))
                             .monospacedDigit()
                         Text("JOURS")
                             .font(.caption2).bold()
                             .foregroundStyle(textSecondary)
                     }
 
-                    // Ligne 2 : heures · minutes
+                    // ✅ Centré sous "jours"
                     HStack(spacing: 8) {
-                        Label("\(c.hours)h", systemImage: "clock")
-                            .labelStyle(.titleOnly)
+                        Text("\(c.hours)h")
                         Text("·")
                         Text("\(c.minutes)min")
                     }
                     .font(.caption2)
                     .foregroundStyle(textSecondary)
+                    .multilineTextAlignment(.center)
                 }
-                .frame(minWidth: 108, alignment: .trailing) // ⬅️ colonne droite un peu plus fine
+                .frame(minWidth: 108, alignment: .center) // ⬅️ centrage horizontal
             }
-            .padding(.horizontal, 14)  // ⬅️ padding latéral réduit
-            .padding(.vertical, 2)    // ⬅️ padding vertical réduit
+            .padding(.horizontal, 14)
+            .padding(.vertical, 12)
         }
     }
 
     // Helpers
     private func componentsLeft(now: Date, to target: Date) -> (days: Int, hours: Int, minutes: Int) {
         let cal = Calendar.current
-        // Jours calculés à J minuit pour éviter les off-by-one
         let d = max(0, cal.dateComponents([.day], from: cal.startOfDay(for: now),
                                           to: cal.startOfDay(for: target)).day ?? 0)
-
-        // Heures/min restant dans la journée courante vers la cible
         let comps = cal.dateComponents([.hour, .minute], from: now, to: target)
         let h = max(0, comps.hour ?? 0) % 24
         let m = max(0, comps.minute ?? 0) % 60
