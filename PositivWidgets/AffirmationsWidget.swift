@@ -61,13 +61,11 @@ struct AffirmationCardView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             Text("AFFIRMATION DU JOUR")
-                .font(.caption2)
-                .bold()
+                .font(.system(size: 11, weight: .bold, design: .monospaced))
                 .foregroundStyle(.secondary)
 
             Text(entry.text)
-                .font(.title3)
-                .fontWeight(.semibold)
+                .font(.system(size: 15, weight: .semibold, design: .rounded))
                 .foregroundStyle(.primary)
                 .minimumScaleFactor(0.7)
                 .multilineTextAlignment(.leading)

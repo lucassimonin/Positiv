@@ -14,7 +14,7 @@ L'application affiche automatiquement une affirmation chaque jour sur votre widg
 
 📸 Exemples :
 
-![Affirmation Edit](https://github.com/lucassimonin/positiv/blob/main/images/1.jpg "Affirmation Edit")
+![Affirmation Edit](https://github.com/lucassimonin/positiv/blob/main/images/1.png "Affirmation Edit")
 
 
 
@@ -28,7 +28,7 @@ Le widget affiche automatiquement le nombre de jours restants ainsi que les heur
 
 📸 Exemples :
 
-![Countdown Edit](https://github.com/lucassimonin/positiv/blob/main/images/2.jpg "Countdown Edit")
+![Countdown Edit](https://github.com/lucassimonin/positiv/blob/main/images/2.png "Countdown Edit")
 
 
 🔒 Widgets iOS 18+

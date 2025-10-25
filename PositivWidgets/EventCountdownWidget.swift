@@ -94,16 +94,16 @@ struct LockScreenCountdownView: View {
                 .foregroundStyle(.secondary)
 
             // Ligne jours + heures/min
-            HStack(alignment: .firstTextBaseline, spacing: 4) {
+            HStack(alignment: .firstTextBaseline, spacing: 2) {
                 HStack(spacing: 3) {
                     Text("\(c.days)")
                         .font(.system(size: 20, weight: .heavy, design: .rounded))
                         .monospacedDigit()
                     Text("j").font(.caption2).bold()
+                    Text("")
                 }
 
-                Spacer(minLength: 6)
-
+            
                 HStack(spacing: 6) {
                     Text("\(c.hours)h")
                     Text("·")
