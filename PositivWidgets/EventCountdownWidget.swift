@@ -8,14 +8,34 @@ struct CountdownEntry: TimelineEntry {
     let eventDate: Date
 }
 
-fileprivate func componentsLeft(now: Date, to target: Date) -> (days: Int, hours: Int, minutes: Int) {
-    let cal = Calendar.current
-    let d = max(0, cal.dateComponents([.day], from: cal.startOfDay(for: now),
-                                      to: cal.startOfDay(for: target)).day ?? 0)
-    let comps = cal.dateComponents([.hour, .minute], from: now, to: target)
-    let h = max(0, comps.hour ?? 0) % 24
-    let m = max(0, comps.minute ?? 0) % 60
-    return (d, h, m)
+fileprivate func componentsLeft(now rawNow: Date, to target: Date, rounding: Bool = false)
+-> (days: Int, hours: Int, minutes: Int, seconds: Int)
+{
+    var cal = Calendar(identifier: .gregorian)
+    cal.timeZone = .current // timezone du téléphone
+
+    // Option A: arrondir l’affichage à la minute (si rounding = true)
+    let now: Date
+    if rounding {
+        // Arrondi à la minute la plus proche
+        let s = cal.component(.second, from: rawNow)
+        let adjust = s >= 30 ? 60 - s : -s
+        now = rawNow.addingTimeInterval(TimeInterval(adjust))
+    } else {
+        // Option B: tronquer à la minute (supprimer les secondes)
+        now = cal.date(bySetting: .second, value: 0, of: rawNow) ?? rawNow
+    }
+
+    // Calcul direct des composantes (DST-safe)
+    let comps = cal.dateComponents([.day, .hour, .minute, .second], from: now, to: target)
+
+    // Normalisation (évite les négatifs)
+    let d = max(0, comps.day ?? 0)
+    let h = max(0, comps.hour ?? 0)
+    let m = max(0, comps.minute ?? 0)
+    let s = max(0, comps.second ?? 0)
+
+    return (d, h, m, s)
 }
 
 fileprivate func formatDate(_ d: Date) -> String {
@@ -50,9 +70,10 @@ struct CountdownProvider: TimelineProvider {
             step = 3 * 3_600
         } else if seconds > 86_400 {     // 1–7 jours : toutes les 60 min
             step = 3_600
-        } else {                         // < 24 h : toutes les 60 s
-            step = 60
+        } else {                         // < 24 h : toutes les 30 s
+            step = 30
         }
+        
 
         var t = now.addingTimeInterval(step)
         while t < entry.eventDate {
@@ -150,7 +171,7 @@ struct CountdownCardView: View {
                             .foregroundStyle(.secondary)
                     }
                     HStack(alignment: .firstTextBaseline, spacing: 4) {
-                        Text("\(c.hours)h"); Text("·"); Text("\(c.minutes)min")
+                        Text("\(c.hours)h"); Text("·"); Text("\(c.minutes)min"); Text("·"); Text("\(c.seconds)sec")
                     }
                     .font(.caption2)
                     .foregroundStyle(.secondary)
