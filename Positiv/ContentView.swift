@@ -18,6 +18,11 @@ struct MainTabs: View {
                 CountdownEditorView()
             }
             .tabItem { Label("Countdown", systemImage: "calendar.badge.clock") }
+            
+            NavigationStack {
+                ArtSettingsView()
+            }
+            .tabItem { Label("Art settings", systemImage: "paintpalette.fill") }
         }
     }
 }

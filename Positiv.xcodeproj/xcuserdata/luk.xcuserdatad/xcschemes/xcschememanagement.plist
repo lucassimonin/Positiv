@@ -7,7 +7,7 @@
 		<key>Positiv.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>0</integer>
+			<integer>1</integer>
 		</dict>
 		<key>PositivWidgetsExtension.xcscheme_^#shared#^_</key>
 		<dict>
@@ -18,6 +18,11 @@
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>A1E4270A2EAAC18100BAF871</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A1E4271C2EAAC1D700BAF871</key>
 		<dict>
 			<key>primary</key>
 			<true/>

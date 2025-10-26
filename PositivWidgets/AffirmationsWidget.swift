@@ -124,6 +124,6 @@ struct AffirmationsWidget: Widget {
         }
         .configurationDisplayName("Affirmation positive")
         .description("Affiche une phrase motivante pour bien commencer la journée.")
-        .supportedFamilies([.systemSmall, .systemMedium, .accessoryRectangular])
+        .supportedFamilies([.systemSmall, .accessoryRectangular])
     }
 }

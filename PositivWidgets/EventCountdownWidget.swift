@@ -177,7 +177,7 @@ struct CountdownCardView: View {
                     .foregroundStyle(.secondary)
                     .multilineTextAlignment(.center)
                 }
-                .frame(minWidth: 150, alignment: .center)
+                .frame(minWidth: 160, alignment: .center)
             }
             .padding(.horizontal, 14)
             .padding(.vertical, 12)

@@ -7,5 +7,6 @@ struct MyWidgetsBundle: WidgetBundle {
     var body: some Widget {
         AffirmationsWidget()
         EventCountdownWidget()
+        ArtWidget()
     }
 }

@@ -11,6 +11,10 @@
 		A13714DF2EABA89400D1E057 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13714DD2EABA89400D1E057 /* Constants.swift */; };
 		A137150F2EABF2F300D1E057 /* AffirmationsShared.swift in Sources */ = {isa = PBXBuildFile; fileRef = A137150E2EABF2F200D1E057 /* AffirmationsShared.swift */; };
 		A13715102EABF2F300D1E057 /* AffirmationsShared.swift in Sources */ = {isa = PBXBuildFile; fileRef = A137150E2EABF2F200D1E057 /* AffirmationsShared.swift */; };
+		A1607CCE2EACF73800C900E5 /* ArtIShared.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1607CCD2EACF73200C900E5 /* ArtIShared.swift */; };
+		A1607CCF2EACF73800C900E5 /* ArtIShared.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1607CCD2EACF73200C900E5 /* ArtIShared.swift */; };
+		A1607CD42EACFB3700C900E5 /* ArtFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1607CD22EACFB3600C900E5 /* ArtFetcher.swift */; };
+		A1607CDB2EAD180600C900E5 /* ArtFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1607CD22EACFB3600C900E5 /* ArtFetcher.swift */; };
 		A1E427202EAAC1D700BAF871 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1E4271F2EAAC1D700BAF871 /* WidgetKit.framework */; };
 		A1E427222EAAC1D700BAF871 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1E427212EAAC1D700BAF871 /* SwiftUI.framework */; };
 		A1E427332EAAC1DB00BAF871 /* PositivWidgetsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = A1E4271D2EAAC1D700BAF871 /* PositivWidgetsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -44,6 +48,8 @@
 		A13714CE2EABA2A100D1E057 /* PositivWidgetsExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PositivWidgetsExtension.entitlements; sourceTree = "<group>"; };
 		A13714DD2EABA89400D1E057 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		A137150E2EABF2F200D1E057 /* AffirmationsShared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AffirmationsShared.swift; sourceTree = "<group>"; };
+		A1607CCD2EACF73200C900E5 /* ArtIShared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtIShared.swift; sourceTree = "<group>"; };
+		A1607CD22EACFB3600C900E5 /* ArtFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtFetcher.swift; sourceTree = "<group>"; };
 		A1E4270B2EAAC18100BAF871 /* Positiv.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Positiv.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1E4271D2EAAC1D700BAF871 /* PositivWidgetsExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = PositivWidgetsExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1E4271F2EAAC1D700BAF871 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
@@ -58,6 +64,13 @@
 			);
 			target = A1E4271C2EAAC1D700BAF871 /* PositivWidgetsExtension */;
 		};
+		A1607CDD2EAD1B3200C900E5 /* Exceptions for "Positiv" folder in "Positiv" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = A1E4270A2EAAC18100BAF871 /* Positiv */;
+		};
 		A1E427342EAAC1DB00BAF871 /* Exceptions for "PositivWidgets" folder in "PositivWidgetsExtension" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -71,6 +84,7 @@
 		A1E4270D2EAAC18100BAF871 /* Positiv */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
+				A1607CDD2EAD1B3200C900E5 /* Exceptions for "Positiv" folder in "Positiv" target */,
 				A13715152EABF62500D1E057 /* Exceptions for "Positiv" folder in "PositivWidgetsExtension" target */,
 			);
 			path = Positiv;
@@ -109,6 +123,8 @@
 		A13714DC2EABA82000D1E057 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				A1607CD22EACFB3600C900E5 /* ArtFetcher.swift */,
+				A1607CCD2EACF73200C900E5 /* ArtIShared.swift */,
 				A137150E2EABF2F200D1E057 /* AffirmationsShared.swift */,
 				A13714DD2EABA89400D1E057 /* Constants.swift */,
 			);
@@ -256,6 +272,8 @@
 			files = (
 				A13714DE2EABA89400D1E057 /* Constants.swift in Sources */,
 				A13715102EABF2F300D1E057 /* AffirmationsShared.swift in Sources */,
+				A1607CCE2EACF73800C900E5 /* ArtIShared.swift in Sources */,
+				A1607CD42EACFB3700C900E5 /* ArtFetcher.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -264,6 +282,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				A137150F2EABF2F300D1E057 /* AffirmationsShared.swift in Sources */,
+				A1607CCF2EACF73800C900E5 /* ArtIShared.swift in Sources */,
+				A1607CDB2EAD180600C900E5 /* ArtFetcher.swift in Sources */,
 				A13714DF2EABA89400D1E057 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -411,6 +431,7 @@
 				DEVELOPMENT_TEAM = JFXKKV893C;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Positiv/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Positiv;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -418,6 +439,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -426,12 +448,16 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.lsimonin.Positiv;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -448,6 +474,7 @@
 				DEVELOPMENT_TEAM = JFXKKV893C;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Positiv/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Positiv;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -455,6 +482,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -463,12 +491,16 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.lsimonin.Positiv;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
