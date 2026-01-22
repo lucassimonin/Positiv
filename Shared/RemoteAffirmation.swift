@@ -11,29 +11,43 @@ struct RemoteAffirmation: Codable {
 struct AffirmationDataLoader {
     
     // 🌍 PARTIE DISTANTE (GitHub)
-    static let jsonURL = URL(string: "https://gist.github.com/lucassimonin/ff2f7f12336937ac7fc005f47bb3759b")!
+    static let jsonURL = URL(string: "https://gist.githubusercontent.com/lucassimonin/ff2f7f12336937ac7fc005f47bb3759b/raw/affirmations.json")!
     static let remoteCacheKey = "cached_affirmations_remote"
     
     // 🚀 FONCTION PRINCIPALE (Appelle ça depuis le Provider)
     static func fetchCombined() async -> [String] {
-        // 1. On charge GitHub
-        let remotePhrases = await fetchRemote()
-        
-        // 2. On charge les phrases de l'utilisateur
-        let userPhrases = fetchUserCustom()
-        
-        // 3. On fusionne (Utilisateur en priorité)
-        let allPhrases = userPhrases + remotePhrases
-        
-        // 4. On nettoie les doublons et on mélange
-        let uniquePhrases = Array(Set(allPhrases)).shuffled()
-        
-        if uniquePhrases.isEmpty {
-            return ["Ajoute tes phrases dans l'app ! ✏️", "Aucune connexion détectée 📡"]
+            
+            // 👇 1. ON VÉRIFIE L'INTERRUPTEUR
+            // On lit la même clé que dans la Vue ("includeRemoteAffirmations")
+            // Si elle n'existe pas encore, on considère que c'est "true" par défaut.
+            let includeRemote = UserDefaults.standard.object(forKey: "includeRemoteAffirmations") as? Bool ?? true
+            
+            // 👇 2. LOGIQUE CONDITIONNELLE
+            let remotePhrases: [String]
+            if includeRemote {
+                // Si l'utilisateur veut le cloud, on charge !
+                remotePhrases = await fetchRemote()
+            } else {
+                // Sinon, on renvoie une liste vide
+                remotePhrases = []
+            }
+            
+            // 3. On charge les phrases de l'utilisateur
+            let userPhrases = fetchUserCustom()
+            
+            // 4. On fusionne
+            let allPhrases = userPhrases + remotePhrases
+            
+            // 5. Nettoyage et mélange
+            let uniquePhrases = Array(Set(allPhrases)).shuffled()
+            
+            // Petit message si l'utilisateur a tout désactivé et n'a rien écrit
+            if uniquePhrases.isEmpty {
+                return ["Ajoute une phrase pour commencer ! ✏️", "Active le cloud pour des idées 💡"]
+            }
+            
+            return uniquePhrases
         }
-        
-        return uniquePhrases
-    }
     
     // --- LOGIQUE INTERNE ---
     
@@ -41,6 +55,7 @@ struct AffirmationDataLoader {
         if let (data, _) = try? await URLSession.shared.data(from: jsonURL),
            let decoded = try? JSONDecoder().decode([RemoteAffirmation].self, from: data) {
             let phrases = decoded.map { $0.text }
+            print(phrases)
             UserDefaults.standard.set(phrases, forKey: remoteCacheKey)
             return phrases
         }
