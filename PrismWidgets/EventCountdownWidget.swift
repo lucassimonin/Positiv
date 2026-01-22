@@ -34,7 +34,7 @@ struct CountdownProvider: TimelineProvider {
 
     private func loadCurrentEntry(locked: Bool) -> CountdownEntry {
         let ud = UserDefaults(suiteName: AppConfig.appGroup)
-        let title = ud?.string(forKey: AppConfig.Keys.countdownTitle) ?? "countdown_event"
+        let title = ud?.string(forKey: AppConfig.Keys.countdownTitle) ?? String(localized: "countdown_event")
         let tEvent = ud?.double(forKey: AppConfig.Keys.countdownDate) ?? 0
         let emojiRaw = ud?.string(forKey: AppConfig.Keys.countdownEmoji) ?? "🗓️"
         let emoji = emojiRaw.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? "🗓️" : emojiRaw

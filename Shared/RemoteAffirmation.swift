@@ -1,33 +1,35 @@
 import Foundation
 import WidgetKit
 
+// 1. On définit les structures ici pour que le Widget les comprenne
+// (Doit être identique à celle de ton App)
+
 struct RemoteAffirmation: Codable {
     let text: String
 }
 
 struct AffirmationDataLoader {
-    // 1. Tes sources
-    static let jsonURL = URL(string: "https://gist.githubusercontent.com/TON_LIEN_ICI/raw/affirmations.json")!
+    
+    // 🌍 PARTIE DISTANTE (GitHub)
+    static let jsonURL = URL(string: "https://gist.github.com/lucassimonin/ff2f7f12336937ac7fc005f47bb3759b")!
     static let remoteCacheKey = "cached_affirmations_remote"
     
-    // 2. La fonction principale qui combine tout
+    // 🚀 FONCTION PRINCIPALE (Appelle ça depuis le Provider)
     static func fetchCombined() async -> [String] {
-        // A. On récupère les phrases de GitHub (ou du cache si pas internet)
+        // 1. On charge GitHub
         let remotePhrases = await fetchRemote()
         
-        // B. On récupère les phrases ajoutées par l'utilisateur (Local)
+        // 2. On charge les phrases de l'utilisateur
         let userPhrases = fetchUserCustom()
         
-        // C. On fusionne les deux
-        // On met les phrases de l'utilisateur EN PREMIER (priorité)
+        // 3. On fusionne (Utilisateur en priorité)
         let allPhrases = userPhrases + remotePhrases
         
-        // D. On nettoie (pas de doublons) et on mélange si tu veux
+        // 4. On nettoie les doublons et on mélange
         let uniquePhrases = Array(Set(allPhrases)).shuffled()
         
-        // Si vraiment vide (ni internet, ni user), phrase de secours
         if uniquePhrases.isEmpty {
-            return ["Ajoute tes propres phrases ! ✏️", "Connecte-toi pour la mise à jour 📡"]
+            return ["Ajoute tes phrases dans l'app ! ✏️", "Aucune connexion détectée 📡"]
         }
         
         return uniquePhrases
@@ -35,36 +37,32 @@ struct AffirmationDataLoader {
     
     // --- LOGIQUE INTERNE ---
     
-    // Récupérer depuis GitHub
     static private func fetchRemote() async -> [String] {
         if let (data, _) = try? await URLSession.shared.data(from: jsonURL),
            let decoded = try? JSONDecoder().decode([RemoteAffirmation].self, from: data) {
-            
             let phrases = decoded.map { $0.text }
-            // On sauvegarde UNIQUEMENT la partie distante dans le cache distant
             UserDefaults.standard.set(phrases, forKey: remoteCacheKey)
             return phrases
         }
-        
-        // Si échec, on lit le cache distant
         return UserDefaults.standard.stringArray(forKey: remoteCacheKey) ?? []
     }
     
-    // Récupérer depuis l'App (Ce que l'utilisateur a tapé)
+    // 👇 C'EST ICI LA MAGIE POUR LIRE TON STORE
     static private func fetchUserCustom() -> [String] {
-        // ⚠️ Assure-toi que c'est bien la même clé que dans ton AffirmationsEditorView
-        // Si tu as supprimé les App Groups, utilise standard, sinon suiteName
+        // ⚠️ IMPORTANT : On essaie de lire exactement comme ton Store.
+        // Si tu utilises AppConfig.appGroup dans le Store, on l'utilise ici aussi.
+        // Si ça renvoie nil (car pas d'entitlement), on fallback sur standard.
         let ud = UserDefaults(suiteName: AppConfig.appGroup) ?? UserDefaults.standard
         
-        // Cas 1 : Si tu sauvegardes des objets complexes (AffirmationItem)
-        if let data = ud.data(forKey: AppConfig.Keys.affirmations),
-           let items = try? JSONDecoder().decode([AffirmationItem].self, from: data) {
-            return items.map { $0.text }
+        // On utilise la même clé que dans AffirmationStore.swift
+        // (Vérifie que AppConfig est bien accessible au Widget, sinon mets la string "affirmations" à la place)
+        guard let data = ud.data(forKey: AppConfig.Keys.affirmations) else {
+            return []
         }
         
-        // Cas 2 : Si tu sauvegardes juste un tableau de Strings
-        if let arr = ud.stringArray(forKey: AppConfig.Keys.affirmations) {
-            return arr
+        // On décode le JSON sauvegardé par l'App
+        if let items = try? JSONDecoder().decode([AffirmationItem].self, from: data) {
+            return items.map { $0.text }
         }
         
         return []

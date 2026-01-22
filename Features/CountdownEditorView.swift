@@ -42,7 +42,7 @@ struct CountdownEditorView: View {
                             // Titre
                             VStack(alignment: .leading) {
                                 Spacer()
-                                Text(title.isEmpty ? "countdown_title".uppercased() : title.uppercased())
+                                Text(title.isEmpty ? String(localized: "countdown_title").uppercased() : title.uppercased())
                                     .font(.system(size: 26, weight: .black, design: .rounded))
                                     .lineLimit(3)
                                     .foregroundColor(.white)

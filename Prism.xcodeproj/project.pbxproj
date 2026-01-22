@@ -26,6 +26,8 @@
 		A1607CCF2EACF73800C900E5 /* ArtIShared.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1607CCD2EACF73200C900E5 /* ArtIShared.swift */; };
 		A1607CD42EACFB3700C900E5 /* ArtFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1607CD22EACFB3600C900E5 /* ArtFetcher.swift */; };
 		A1607CDB2EAD180600C900E5 /* ArtFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1607CD22EACFB3600C900E5 /* ArtFetcher.swift */; };
+		A16ECEEA2F22A1C500289E01 /* RemoteAffirmation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16ECEE92F22A1C500289E01 /* RemoteAffirmation.swift */; };
+		A16ECEEB2F22A1C500289E01 /* RemoteAffirmation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16ECEE92F22A1C500289E01 /* RemoteAffirmation.swift */; };
 		A1E427202EAAC1D700BAF871 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1E4271F2EAAC1D700BAF871 /* WidgetKit.framework */; };
 		A1E427222EAAC1D700BAF871 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1E427212EAAC1D700BAF871 /* SwiftUI.framework */; };
 		A1E427332EAAC1DB00BAF871 /* PrismWidgetsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = A1E4271D2EAAC1D700BAF871 /* PrismWidgetsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -70,6 +72,7 @@
 		A137150E2EABF2F200D1E057 /* AffirmationsShared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AffirmationsShared.swift; sourceTree = "<group>"; };
 		A1607CCD2EACF73200C900E5 /* ArtIShared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtIShared.swift; sourceTree = "<group>"; };
 		A1607CD22EACFB3600C900E5 /* ArtFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtFetcher.swift; sourceTree = "<group>"; };
+		A16ECEE92F22A1C500289E01 /* RemoteAffirmation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteAffirmation.swift; sourceTree = "<group>"; };
 		A1E4270B2EAAC18100BAF871 /* Prism.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Prism.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1E4271D2EAAC1D700BAF871 /* PrismWidgetsExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = PrismWidgetsExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1E4271F2EAAC1D700BAF871 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
@@ -156,6 +159,7 @@
 		A13714DC2EABA82000D1E057 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				A16ECEE92F22A1C500289E01 /* RemoteAffirmation.swift */,
 				A1607CD22EACFB3600C900E5 /* ArtFetcher.swift */,
 				A1607CCD2EACF73200C900E5 /* ArtIShared.swift */,
 				A137150E2EABF2F200D1E057 /* AffirmationsShared.swift */,
@@ -311,6 +315,7 @@
 			files = (
 				A13714DE2EABA89400D1E057 /* Constants.swift in Sources */,
 				A13715102EABF2F300D1E057 /* AffirmationsShared.swift in Sources */,
+				A16ECEEB2F22A1C500289E01 /* RemoteAffirmation.swift in Sources */,
 				A1231C112F2116E700524A7F /* AffirmationsEditorView.swift in Sources */,
 				A1231C122F2116E700524A7F /* AffirmationStore.swift in Sources */,
 				A1231C132F2116E700524A7F /* ArtEditorView.swift in Sources */,
@@ -331,6 +336,7 @@
 				A1607CCF2EACF73800C900E5 /* ArtIShared.swift in Sources */,
 				A1607CDB2EAD180600C900E5 /* ArtFetcher.swift in Sources */,
 				A13714DF2EABA89400D1E057 /* Constants.swift in Sources */,
+				A16ECEEA2F22A1C500289E01 /* RemoteAffirmation.swift in Sources */,
 				A1231C192F2116E700524A7F /* AffirmationStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -70,13 +70,13 @@ struct ArtCardView: View {
 
                     // Texte
                     VStack(alignment: .leading, spacing: 2) {
-                        Text(entry.item?.title ?? "art_radom")
+                        Text(entry.item?.title ?? String(localized: "art_radom"))
                             .font(.footnote).fontWeight(.semibold)
                             .foregroundStyle(.white)
                             .lineLimit(2).minimumScaleFactor(0.7)
 
                         HStack(spacing: 4) {
-                            Text(entry.item?.artist ?? "art_unknown_artist")
+                            Text(entry.item?.artist ?? String(localized: "art_unknown_artist"))
                             if let y = entry.item?.year, !y.isEmpty { Text("· \(y)") }
                         }
                         .font(.caption2)

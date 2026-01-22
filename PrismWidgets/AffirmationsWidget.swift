@@ -19,23 +19,33 @@ struct AffirmationProvider: TimelineProvider {
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<AffirmationEntry>) -> Void) {
-        // 🔒 VÉRIFICATION PREMIUM
-        let ud = UserDefaults(suiteName: AppConfig.appGroup) ?? UserDefaults.standard
-        // On vérifie UNIQUEMENT la clé Affirmation
-        let isPremium = ud.bool(forKey: "isAffirmationPremium")
-        let lockedStatus = !isPremium
-        
-        var entries: [AffirmationEntry] = []
-        let cal = Calendar.current
-        let start = cal.startOfDay(for: Date())
-        
-        for i in 0..<7 {
-            if let day = cal.date(byAdding: .day, value: i, to: start) {
-                // On applique le statut locked à toute la timeline
-                entries.append(AffirmationEntry(date: day, text: pick(for: day), isLocked: lockedStatus))
+        Task {
+            // 👇 LE CHANGEMENT EST ICI : On appelle fetchCombined()
+            let phrases = await AffirmationDataLoader.fetchCombined()
+            
+            // ... (Le reste de ta logique de sécurité Premium reste identique) ...
+            let ud = UserDefaults(suiteName: AppConfig.appGroup) ?? UserDefaults.standard
+            let isPremium = ud.bool(forKey: "isAffirmationPremium")
+            let lockedStatus = !isPremium
+            
+            var entries: [AffirmationEntry] = []
+            let cal = Calendar.current
+            let start = cal.startOfDay(for: Date())
+            
+            for i in 0..<7 {
+                if let day = cal.date(byAdding: .day, value: i, to: start) {
+                    // On pioche dans la liste combinée
+                    let index = Calendar.current.ordinality(of: .day, in: .era, for: day) ?? 0
+                    // Le modulo (%) assure qu'on ne plante pas même si la liste est courte
+                    let textOfTheDay = phrases[index % phrases.count]
+                    
+                    entries.append(AffirmationEntry(date: day, text: textOfTheDay, isLocked: lockedStatus))
+                }
             }
+            
+            let nextUpdate = cal.date(byAdding: .hour, value: 4, to: .now)!
+            completion(Timeline(entries: entries, policy: .after(nextUpdate)))
         }
-        completion(Timeline(entries: entries, policy: .atEnd))
     }
 
     // --- Helpers ---
