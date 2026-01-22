@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A1231C112F2116E700524A7F /* AffirmationsEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1231C082F2116E700524A7F /* AffirmationsEditorView.swift */; };
+		A1231C122F2116E700524A7F /* AffirmationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1231C092F2116E700524A7F /* AffirmationStore.swift */; };
+		A1231C132F2116E700524A7F /* ArtSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1231C0A2F2116E700524A7F /* ArtSettingsView.swift */; };
+		A1231C142F2116E700524A7F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1231C0C2F2116E700524A7F /* ContentView.swift */; };
+		A1231C152F2116E700524A7F /* CountdownEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1231C0D2F2116E700524A7F /* CountdownEditorView.swift */; };
+		A1231C162F2116E700524A7F /* PositivApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1231C102F2116E700524A7F /* PositivApp.swift */; };
+		A1231C172F2116E700524A7F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1231C0B2F2116E700524A7F /* Assets.xcassets */; };
+		A1231C192F2116E700524A7F /* AffirmationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1231C092F2116E700524A7F /* AffirmationStore.swift */; };
+		A1231C2D2F211E3100524A7F /* StoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1231C292F211D5B00524A7F /* StoreManager.swift */; };
 		A13714DE2EABA89400D1E057 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13714DD2EABA89400D1E057 /* Constants.swift */; };
 		A13714DF2EABA89400D1E057 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13714DD2EABA89400D1E057 /* Constants.swift */; };
 		A137150F2EABF2F300D1E057 /* AffirmationsShared.swift in Sources */ = {isa = PBXBuildFile; fileRef = A137150E2EABF2F200D1E057 /* AffirmationsShared.swift */; };
@@ -45,6 +54,16 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		A1231C082F2116E700524A7F /* AffirmationsEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AffirmationsEditorView.swift; sourceTree = "<group>"; };
+		A1231C092F2116E700524A7F /* AffirmationStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AffirmationStore.swift; sourceTree = "<group>"; };
+		A1231C0A2F2116E700524A7F /* ArtSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtSettingsView.swift; sourceTree = "<group>"; };
+		A1231C0B2F2116E700524A7F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A1231C0C2F2116E700524A7F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		A1231C0D2F2116E700524A7F /* CountdownEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownEditorView.swift; sourceTree = "<group>"; };
+		A1231C0E2F2116E700524A7F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A1231C102F2116E700524A7F /* PositivApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositivApp.swift; sourceTree = "<group>"; };
+		A1231C292F211D5B00524A7F /* StoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreManager.swift; sourceTree = "<group>"; };
+		A1231C2F2F211EF300524A7F /* Positiv.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Positiv.entitlements; sourceTree = "<group>"; };
 		A13714CE2EABA2A100D1E057 /* PositivWidgetsExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PositivWidgetsExtension.entitlements; sourceTree = "<group>"; };
 		A13714DD2EABA89400D1E057 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		A137150E2EABF2F200D1E057 /* AffirmationsShared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AffirmationsShared.swift; sourceTree = "<group>"; };
@@ -57,20 +76,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		A13715152EABF62500D1E057 /* Exceptions for "Positiv" folder in "PositivWidgetsExtension" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				AffirmationStore.swift,
-			);
-			target = A1E4271C2EAAC1D700BAF871 /* PositivWidgetsExtension */;
-		};
-		A1607CDD2EAD1B3200C900E5 /* Exceptions for "Positiv" folder in "Positiv" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Info.plist,
-			);
-			target = A1E4270A2EAAC18100BAF871 /* Positiv */;
-		};
 		A1E427342EAAC1DB00BAF871 /* Exceptions for "PositivWidgets" folder in "PositivWidgetsExtension" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -81,13 +86,9 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		A1E4270D2EAAC18100BAF871 /* Positiv */ = {
+		A1231C2A2F211D7800524A7F /* Hub */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				A1607CDD2EAD1B3200C900E5 /* Exceptions for "Positiv" folder in "Positiv" target */,
-				A13715152EABF62500D1E057 /* Exceptions for "Positiv" folder in "PositivWidgetsExtension" target */,
-			);
-			path = Positiv;
+			path = Hub;
 			sourceTree = "<group>";
 		};
 		A1E427232EAAC1D700BAF871 /* PositivWidgets */ = {
@@ -120,6 +121,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A1231C262F211A7200524A7F /* App */ = {
+			isa = PBXGroup;
+			children = (
+				A1231C2F2F211EF300524A7F /* Positiv.entitlements */,
+				A1231C0B2F2116E700524A7F /* Assets.xcassets */,
+				A1231C0C2F2116E700524A7F /* ContentView.swift */,
+				A1231C0E2F2116E700524A7F /* Info.plist */,
+				A1231C102F2116E700524A7F /* PositivApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		A1231C272F211A7D00524A7F /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				A1231C292F211D5B00524A7F /* StoreManager.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		A1231C282F211A8300524A7F /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				A1231C2A2F211D7800524A7F /* Hub */,
+				A1231C082F2116E700524A7F /* AffirmationsEditorView.swift */,
+				A1231C092F2116E700524A7F /* AffirmationStore.swift */,
+				A1231C0A2F2116E700524A7F /* ArtSettingsView.swift */,
+				A1231C0D2F2116E700524A7F /* CountdownEditorView.swift */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
 		A13714DC2EABA82000D1E057 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
@@ -134,9 +167,11 @@
 		A1E427022EAAC18100BAF871 = {
 			isa = PBXGroup;
 			children = (
+				A1231C282F211A8300524A7F /* Features */,
+				A1231C272F211A7D00524A7F /* Core */,
+				A1231C262F211A7200524A7F /* App */,
 				A13714DC2EABA82000D1E057 /* Shared */,
 				A13714CE2EABA2A100D1E057 /* PositivWidgetsExtension.entitlements */,
-				A1E4270D2EAAC18100BAF871 /* Positiv */,
 				A1E427232EAAC1D700BAF871 /* PositivWidgets */,
 				A1E4271E2EAAC1D700BAF871 /* Frameworks */,
 				A1E4270C2EAAC18100BAF871 /* Products */,
@@ -179,7 +214,7 @@
 				A1E427322EAAC1DB00BAF871 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				A1E4270D2EAAC18100BAF871 /* Positiv */,
+				A1231C2A2F211D7800524A7F /* Hub */,
 			);
 			name = Positiv;
 			packageProductDependencies = (
@@ -218,7 +253,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 2600;
-				LastUpgradeCheck = 2600;
+				LastUpgradeCheck = 2620;
 				TargetAttributes = {
 					A1E4270A2EAAC18100BAF871 = {
 						CreatedOnToolsVersion = 26.0.1;
@@ -253,6 +288,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1231C172F2116E700524A7F /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,6 +308,13 @@
 			files = (
 				A13714DE2EABA89400D1E057 /* Constants.swift in Sources */,
 				A13715102EABF2F300D1E057 /* AffirmationsShared.swift in Sources */,
+				A1231C112F2116E700524A7F /* AffirmationsEditorView.swift in Sources */,
+				A1231C122F2116E700524A7F /* AffirmationStore.swift in Sources */,
+				A1231C132F2116E700524A7F /* ArtSettingsView.swift in Sources */,
+				A1231C142F2116E700524A7F /* ContentView.swift in Sources */,
+				A1231C152F2116E700524A7F /* CountdownEditorView.swift in Sources */,
+				A1231C162F2116E700524A7F /* PositivApp.swift in Sources */,
+				A1231C2D2F211E3100524A7F /* StoreManager.swift in Sources */,
 				A1607CCE2EACF73800C900E5 /* ArtIShared.swift in Sources */,
 				A1607CD42EACFB3700C900E5 /* ArtFetcher.swift in Sources */,
 			);
@@ -285,6 +328,7 @@
 				A1607CCF2EACF73800C900E5 /* ArtIShared.swift in Sources */,
 				A1607CDB2EAD180600C900E5 /* ArtFetcher.swift in Sources */,
 				A13714DF2EABA89400D1E057 /* Constants.swift in Sources */,
+				A1231C192F2116E700524A7F /* AffirmationStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -334,6 +378,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = JFXKKV893C;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -357,6 +402,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -397,6 +443,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = JFXKKV893C;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -413,6 +460,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -424,15 +472,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
-				CODE_SIGN_ENTITLEMENTS = Positiv/Positiv.entitlements;
+				CODE_SIGN_ENTITLEMENTS = App/Positiv.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = PositivWidgets/Assets.xcassets;
-				DEVELOPMENT_TEAM = JFXKKV893C;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Positiv/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Positiv;
+				INFOPLIST_FILE = App/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Prism;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -467,15 +514,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
-				CODE_SIGN_ENTITLEMENTS = Positiv/Positiv.entitlements;
+				CODE_SIGN_ENTITLEMENTS = App/Positiv.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = PositivWidgets/Assets.xcassets;
-				DEVELOPMENT_TEAM = JFXKKV893C;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Positiv/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Positiv;
+				INFOPLIST_FILE = App/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Prism;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -512,7 +558,6 @@
 				CODE_SIGN_ENTITLEMENTS = PositivWidgetsExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = JFXKKV893C;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PositivWidgets/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = PositivWidgets;
@@ -543,7 +588,6 @@
 				CODE_SIGN_ENTITLEMENTS = PositivWidgetsExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = JFXKKV893C;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PositivWidgets/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = PositivWidgets;

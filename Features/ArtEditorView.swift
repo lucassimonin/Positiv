@@ -1,6 +1,6 @@
 //
 //  ArtSettingsView.swift
-//  Positiv
+//  Prism
 //
 //  Created by DnD-Luk on 25/10/2025.
 //
