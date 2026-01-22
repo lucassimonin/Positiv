@@ -128,7 +128,15 @@ struct ArtEditorView: View {
         }
         .navigationTitle("art_widget_name")
         .navigationBarTitleDisplayMode(.inline)
-        .onAppear(perform: loadImageFromDisk)
+        .onAppear {
+            // Charge l'image locale existante
+            loadImageFromDisk()
+            
+            // 👇 AJOUT : Si c'est vide (premier lancement), on en charge une nouvelle
+            if currentItem == nil {
+                loadNewArt()
+            }
+        }
     }
     
     // --- LOGIQUE (Identique à avant) ---

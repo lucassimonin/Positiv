@@ -157,8 +157,20 @@ struct ModuleCard: View {
                             UserDefaults.standard.set(true, forKey: key)
                         }
                         
-                        // 3. On réveille les widgets
-                        WidgetCenter.shared.reloadAllTimelines()
+                        if module == .art {
+                            // On lance une tâche asynchrone pour télécharger l'image
+                            Task {
+                                // On vérifie s'il y a déjà une image, sinon on en charge une
+                                if ArtCache.load() == nil {
+                                    await ArtFetcher.fetchAndCache()
+                                }
+                                // Une fois fini, on recharge les widgets
+                                WidgetCenter.shared.reloadAllTimelines()
+                            }
+                        } else {
+                            // Pour les autres widgets (Countdown, Affirmation), pas besoin d'attendre
+                            WidgetCenter.shared.reloadAllTimelines()
+                        }
                     }
                 } message: {
                     Text("shop_unlock_desc \(module.localizedName)")
