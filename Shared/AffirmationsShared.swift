@@ -1,6 +1,6 @@
 //
 //  AffirmationsShared.swift
-//  Positiv
+//  Prism
 //
 //  Created by DnD-Luk on 24/10/2025.
 //

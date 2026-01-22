@@ -1,77 +1,157 @@
-//
-//  ArtSettingsView.swift
-//  Prism
-//
-//  Created by DnD-Luk on 25/10/2025.
-//
-
 import SwiftUI
 import WidgetKit
 
-struct ArtSettingsView: View {
+struct ArtEditorView: View {
     @Environment(\.openURL) private var openURL
-        @State private var status = "Idle"
-        @State private var appearance = ArtPrefs.getAppearance()
-        @State private var current: ArtItem? = ArtCache.load()
-
+    
+    // État de l'interface
+    @State private var currentItem: ArtItem? = ArtCache.load()
+    @State private var isLoading = false
+    @State private var uiImage: UIImage? = nil
+    
     var body: some View {
-        NavigationStack {
-            Form {
-                if let item = current, let url = URL(string: item.articleUrl) {
-                    Section("Œuvre actuelle") {
-                        Text(item.title).font(.subheadline)
-                        Button("🔎 Ouvrir la fiche") { openURL(url) }
-                    }
-                }
-                
-
-                Section {
-                    
-                    Button("🔄 Rafraîchir l’œuvre") {
-                        _Concurrency.Task {
-                            status = "⏳ Fetch…"
-                            await ArtFetcher.fetchAndCache()
-                            current = ArtCache.load()
-                            status = "✅ Fait"
-                            
+        ZStack {
+            // 1. FOND D'ÉCRAN (L'œuvre floutée)
+            if let uiImage = uiImage {
+                Image(uiImage: uiImage)
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .ignoresSafeArea()
+                    .blur(radius: 30) // Flou plus fort pour bien détacher les textes
+                    .overlay(Color.black.opacity(0.4)) // Assombrir pour le contraste
+            } else {
+                Color(red: 0.1, green: 0.1, blue: 0.15).ignoresSafeArea()
+            }
+            
+            VStack(spacing: 0) {
+                // 2. CADRE DE L'ŒUVRE
+                ZStack {
+                    if isLoading {
+                        ProgressView()
+                            .scaleEffect(1.5)
+                            .tint(.white)
+                    } else if let uiImage = uiImage {
+                        Image(uiImage: uiImage)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .cornerRadius(16)
+                            // Une ombre portée plus douce et diffuse
+                            .shadow(color: .black.opacity(0.6), radius: 25, x: 0, y: 15)
+                            .padding(.horizontal, 35)
+                            .transition(.opacity.combined(with: .scale(scale: 0.95)))
+                    } else {
+                        VStack(spacing: 15) {
+                            Image(systemName: "paintpalette.fill")
+                                .font(.system(size: 50))
+                                .foregroundColor(.gray)
+                            Text("art_no_works_uploaded")
+                                .foregroundColor(.gray)
                         }
                     }
-                    Button("🧹 Vider le cache") {
-                        ArtCache.clear()
-                        _Concurrency.Task { await pushWidgetReloadSafely() }
-                        status = "🧹 Cache vidé"
-                    }
                 }
-
-                Text("Status: \(status)")
-                    .font(.footnote).foregroundStyle(.secondary)
+                .frame(maxHeight: 450)
+                
+                Spacer()
+                
+                // 3. INFOS DE L'ŒUVRE (Titre et Artiste seulement ici)
+                if let item = currentItem, !isLoading {
+                    VStack(spacing: 6) {
+                        Text(item.title)
+                            .font(.title3).bold() // Un peu plus petit pour l'élégance
+                            .multilineTextAlignment(.center)
+                            .foregroundColor(.white)
+                            .shadow(radius: 2)
+                        
+                        Text(item.artist ?? "Artiste inconnu")
+                            .font(.subheadline)
+                            .foregroundColor(.white.opacity(0.9))
+                        
+                        if let year = item.year {
+                            Text(year)
+                                .font(.caption)
+                                .foregroundColor(.white.opacity(0.7))
+                        }
+                    }
+                    .padding(.horizontal, 30)
+                    .padding(.bottom, 20) // Un peu d'espace avant les boutons
+                }
+                
+                // 4. LES DEUX BOUTONS (Regroupés en bas)
+                HStack(spacing: 15) {
+                                    
+                    // A. Bouton Met (Plus petit)
+                    if let item = currentItem, let url = URL(string: item.articleUrl) {
+                        Button(action: { openURL(url) }) {
+                            HStack(spacing: 6) {
+                                Image(systemName: "building.columns.fill")
+                                    .font(.system(size: 18))
+                                Text("art_learn_more")
+                                    .font(.subheadline)
+                            }
+                            .foregroundColor(.white) // Texte blanc
+                            .padding(.vertical, 14)
+                            .padding(.horizontal, 24)
+                            .background(.ultraThinMaterial) // Le même effet verre
+                            .clipShape(Capsule())
+                            .overlay(
+                                Capsule().stroke(Color.white.opacity(0.3), lineWidth: 1) // Contour fin
+                            )
+                        }
+                    }
+                    
+                    // B. Bouton Inspiration (Large et Élégant)
+                    Button(action: loadNewArt) {
+                        HStack(spacing: 10) {
+                            if isLoading {
+                                ProgressView().tint(.white)
+                            } else {
+                                Image(systemName: "sparkles")
+                                    .font(.system(size: 16, weight: .semibold))
+                            }
+                            
+                            Text(isLoading ? "art_loading" : "art_new")
+                                .font(.system(size: 16, weight: .semibold, design: .rounded))
+                        }
+                        .foregroundColor(.white) // Texte blanc
+                        .padding(.vertical, 14)
+                        .padding(.horizontal, 24)
+                        .background(.ultraThinMaterial) // Le même effet verre
+                        .clipShape(Capsule())
+                        .overlay(
+                            Capsule().stroke(Color.white.opacity(0.3), lineWidth: 1) // Contour fin
+                        )
+                    }
+                    .disabled(isLoading)
+                }
+                .padding(.bottom, 30)    // Marge du bas
             }
-            .navigationTitle("Widget Art")
-            .onAppear { current = ArtCache.load() }
+        }
+        .navigationTitle("art_widget_name")
+        .navigationBarTitleDisplayMode(.inline)
+        .onAppear(perform: loadImageFromDisk)
+    }
+    
+    // --- LOGIQUE (Identique à avant) ---
+    private func loadImageFromDisk() {
+        guard let item = currentItem, let path = item.localImagePath else { return }
+        if let data = try? Data(contentsOf: URL(fileURLWithPath: path)),
+           let img = UIImage(data: data) {
+            withAnimation { self.uiImage = img }
         }
     }
-}
-
-@MainActor
-func pushWidgetReloadNow() {
-    WidgetCenter.shared.getCurrentConfigurations { result in
-        if case .success(let widgets) = result, !widgets.isEmpty {
-            WidgetCenter.shared.reloadAllTimelines()
+    
+    private func loadNewArt() {
+        withAnimation { isLoading = true }
+        Task {
+            await ArtFetcher.fetchAndCache()
+            let newItem = ArtCache.load()
+            await MainActor.run {
+                withAnimation(.spring()) {
+                    self.currentItem = newItem
+                    self.loadImageFromDisk()
+                    self.isLoading = false
+                }
+            }
         }
-    }
-}
-
-struct PillButtonStyle: ButtonStyle {
-    var color: Color = .blue
-    func makeBody(configuration: Configuration) -> some View {
-        configuration.label
-            .font(.system(.headline, design: .rounded))
-            .padding(.vertical, 12)
-            .frame(maxWidth: .infinity)
-            .background(color.opacity(configuration.isPressed ? 0.75 : 1))
-            .foregroundColor(.white)
-            .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
-            .shadow(color: color.opacity(0.25), radius: configuration.isPressed ? 0 : 8, x: 0, y: 4)
-            .animation(.easeOut(duration: 0.12), value: configuration.isPressed)
     }
 }

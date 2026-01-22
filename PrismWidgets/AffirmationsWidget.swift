@@ -1,129 +1,178 @@
 import WidgetKit
 import SwiftUI
 
+// MARK: - Entry
 struct AffirmationEntry: TimelineEntry {
     let date: Date
     let text: String
+    let isLocked: Bool
 }
 
 // MARK: - Provider
 struct AffirmationProvider: TimelineProvider {
     func placeholder(in context: Context) -> AffirmationEntry {
-        AffirmationEntry(date: .now, text: "Tu es capable de grandes choses ✨")
+        AffirmationEntry(date: .now, text: String(localized: "affimation_not_found"), isLocked: false)
     }
 
     func getSnapshot(in context: Context, completion: @escaping (AffirmationEntry) -> Void) {
-        completion(entryForNow())
+        completion(entryForNow(locked: false))
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<AffirmationEntry>) -> Void) {
+        // 🔒 VÉRIFICATION PREMIUM
+        let ud = UserDefaults(suiteName: AppConfig.appGroup) ?? UserDefaults.standard
+        // On vérifie UNIQUEMENT la clé Affirmation
+        let isPremium = ud.bool(forKey: "isAffirmationPremium")
+        let lockedStatus = !isPremium
+        
         var entries: [AffirmationEntry] = []
         let cal = Calendar.current
         let start = cal.startOfDay(for: Date())
+        
         for i in 0..<7 {
-            let day = cal.date(byAdding: .day, value: i, to: start)!
-            entries.append(AffirmationEntry(date: day, text: pick(for: day)))
+            if let day = cal.date(byAdding: .day, value: i, to: start) {
+                // On applique le statut locked à toute la timeline
+                entries.append(AffirmationEntry(date: day, text: pick(for: day), isLocked: lockedStatus))
+            }
         }
         completion(Timeline(entries: entries, policy: .atEnd))
     }
 
-    // helpers
-    private func entryForNow() -> AffirmationEntry {
-        AffirmationEntry(date: .now, text: pick(for: Date()))
+    // --- Helpers ---
+    private func entryForNow(locked: Bool) -> AffirmationEntry {
+        AffirmationEntry(date: .now, text: pick(for: Date()), isLocked: locked)
     }
 
     private func loadList() -> [String] {
         let ud = UserDefaults(suiteName: AppConfig.appGroup)
-        // Nouveau format: [AffirmationItem]
+        
         if let data = ud?.data(forKey: AppConfig.Keys.affirmations),
            let items = try? JSONDecoder().decode([AffirmationItem].self, from: data),
            !items.isEmpty {
             return items.map { $0.text }
         }
-        // Ancien format: [String]
+        
         if let arr = ud?.stringArray(forKey: AppConfig.Keys.affirmations), !arr.isEmpty {
             return arr
         }
-        return ["Je progresse chaque jour ✨", "Je mérite le meilleur 💖"]
+        
+        return [String(localized: "affimation_not_found")]
     }
 
     private func pick(for date: Date) -> String {
-        let list = loadList(); guard !list.isEmpty else { return "…" }
+        let list = loadList()
+        guard !list.isEmpty else { return "..." }
         let idx = Calendar.current.ordinality(of: .day, in: .era, for: date) ?? 0
         return list[idx % list.count]
     }
 }
 
-
+// MARK: - Vue du Widget
 struct AffirmationCardView: View {
     let entry: AffirmationEntry
+    @Environment(\.widgetRenderingMode) var renderingMode
+
+    // ✨ MAGIE ICI : Calcul de la taille selon la longueur
+    var dynamicFontSize: CGFloat {
+        let count = entry.text.count
+        switch count {
+        case 0..<30: return 32  // Très court : Très gros
+        case 30..<80: return 24 // Moyen : Normal
+        default: return 18      // Long : Petit
+        }
+    }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Text("AFFIRMATION DU JOUR")
-                .font(.system(size: 11, weight: .bold, design: .monospaced))
-                .foregroundStyle(.secondary)
-
+        let textColor: Color = (renderingMode == .fullColor) ? .white : .primary
+        
+        VStack(alignment: .leading, spacing: 0) {
+            
+            // 1. EN-TÊTE
+            HStack(spacing: 6) {
+                Text("affirmation_widget_title")
+                    .font(.system(size: 7, weight: .bold))
+                    .textCase(.uppercase)
+                    .tracking(1)
+            }
+            .foregroundStyle(textColor.opacity(0.7))
+            .padding(.bottom, 12)
+            
+            // 2. LE TEXTE
             Text(entry.text)
-                .font(.system(size: 15, weight: .semibold, design: .rounded))
-                .foregroundStyle(.primary)
-                .minimumScaleFactor(0.7)
+                // 👇 On utilise la variable dynamicFontSize ici
+                .font(.system(size: dynamicFontSize, weight: .thin, design: .serif))
+                .italic()
+                .foregroundStyle(textColor)
+                .lineSpacing(1)
+                .lineLimit(6) // J'ai augmenté un peu la limite de lignes
+                .minimumScaleFactor(0.6) // Autorise à réduire encore un peu si vraiment trop long
                 .multilineTextAlignment(.leading)
+                .frame(maxWidth: .infinity, alignment: .leading)
+            
+            Spacer()
         }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(.vertical, 4)
-        .padding(.horizontal, 2)
-        // ✅ même fond que le countdown
+        .padding(18)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
         .containerBackground(for: .widget) {
-            Rectangle().fill(.ultraThinMaterial)
+            if renderingMode == .fullColor {
+                LinearGradient(
+                    colors: [Color.purple, Color.blue.opacity(0.8)],
+                    startPoint: .topLeading,
+                    endPoint: .bottomTrailing
+                )
+            } else {
+                Color.clear
+            }
         }
+        .widgetURL(URL(string: "prism://positiv"))
     }
 }
 
+// MARK: - Lock Screen
 struct LockScreenAffirmationView: View {
     let entry: AffirmationEntry
-
+    
     var body: some View {
-        VStack(alignment: .leading, spacing: 2) {
-            Text("Affirmation du jour")
-                .font(.system(size: 12, weight: .bold, design: .rounded))
-                .foregroundStyle(.secondary)
-
+        VStack(alignment: .leading) {
             Text(entry.text)
-                .font(.system(size: 11, weight: .regular, design: .rounded))
-                .multilineTextAlignment(.leading)
+                .font(.caption)
+                .lineLimit(2)
         }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .containerBackground(for: .widget) {
-            EmptyView() // fond système lock screen
-        }
+        .containerBackground(for: .widget) { EmptyView() }
+        .widgetURL(URL(string: "prism://positiv"))
     }
 }
 
+// MARK: - Root View (Switch Sécurité)
 struct AffirmationRootView: View {
     @Environment(\.widgetFamily) private var family
     let entry: AffirmationEntry
 
     var body: some View {
-        Group {
-            switch family {
-            case .accessoryRectangular:
+        // 🔒 SÉCURITÉ
+        if entry.isLocked {
+            LockedView() // On affiche le cadenas
+        } else {
+            // Contenu normal
+            if family == .accessoryRectangular {
                 LockScreenAffirmationView(entry: entry)
-            default:
+            } else {
                 AffirmationCardView(entry: entry)
             }
         }
     }
 }
 
+// MARK: - Main Widget
 struct AffirmationsWidget: Widget {
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: AppConfig.WidgetKind.affirmations,
                             provider: AffirmationProvider()) { entry in
             AffirmationRootView(entry: entry)
         }
-        .configurationDisplayName("Affirmation positive")
-        .description("Affiche une phrase motivante pour bien commencer la journée.")
-        .supportedFamilies([.systemSmall, .accessoryRectangular])
+        .configurationDisplayName("affirmation_widget_name")
+        .description("affirmation_widget_description")
+        .supportedFamilies([.systemSmall, .systemMedium, .accessoryRectangular])
+        .contentMarginsDisabled()
     }
 }

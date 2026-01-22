@@ -1,6 +1,6 @@
 //
 //  ArtIShared.swift
-//  Positiv
+//  Prism
 //
 //  Created by DnD-Luk on 25/10/2025.
 //
@@ -38,7 +38,6 @@ public enum ArtCache {
             let data = try JSONEncoder().encode(item)
             suite.set(data, forKey: key)
             suite.synchronize()
-            print("💾 ArtCache saved:", item.title)
         } catch {
             print("⚠️ ArtCache save failed:", error)
         }
@@ -61,7 +60,7 @@ public enum ArtCache {
             .appendingPathComponent("artwidget") {
             do {
                 let contents = try FileManager.default.contentsOfDirectory(at: dir, includingPropertiesForKeys: nil)
-                for f in contents { try? FileManager.default.removeItem(at: f); print("🗑️ Deleted:", f.lastPathComponent) }
+                for f in contents { try? FileManager.default.removeItem(at: f); }
             } catch { print("⚠️ clear files failed:", error.localizedDescription) }
         }
     }
@@ -94,9 +93,6 @@ func pushWidgetReloadSafely() async {
         WidgetCenter.shared.getCurrentConfigurations { result in
             if case .success(let widgets) = result, !widgets.isEmpty {
                 WidgetCenter.shared.reloadAllTimelines()
-                print("🔁 Widget timelines reloaded (\(widgets.count))")
-            } else {
-                print("ℹ️ Aucun widget installé, pas de reload.")
             }
             cont.resume()
         }

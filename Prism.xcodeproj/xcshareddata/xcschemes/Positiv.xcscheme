@@ -16,9 +16,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "A1E4270A2EAAC18100BAF871"
-               BuildableName = "Positiv.app"
-               BlueprintName = "Positiv"
-               ReferencedContainer = "container:Positiv.xcodeproj">
+               BuildableName = "Prism.app"
+               BlueprintName = "Prism"
+               ReferencedContainer = "container:Prism.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -45,9 +45,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A1E4270A2EAAC18100BAF871"
-            BuildableName = "Positiv.app"
-            BlueprintName = "Positiv"
-            ReferencedContainer = "container:Positiv.xcodeproj">
+            BuildableName = "Prism.app"
+            BlueprintName = "Prism"
+            ReferencedContainer = "container:Prism.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -62,9 +62,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A1E4270A2EAAC18100BAF871"
-            BuildableName = "Positiv.app"
-            BlueprintName = "Positiv"
-            ReferencedContainer = "container:Positiv.xcodeproj">
+            BuildableName = "Prism.app"
+            BlueprintName = "Prism"
+            ReferencedContainer = "container:Prism.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

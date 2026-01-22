@@ -1,32 +1,34 @@
-// A mettre tout en bas du fichier, hors des autres structs
+import SwiftUI
+import WidgetKit
+
 struct LockedView: View {
     var body: some View {
-        ZStack {
-            ContainerRelativeShape()
-                .fill(Color.black.opacity(0.8))
+        // Pas de ZStack ici, juste le contenu vertical
+        VStack(spacing: 10) {
+            Image(systemName: "lock.fill")
+                .font(.system(size: 24))
+                .foregroundStyle(.orange)
+                .padding(10)
+                .background(.white.opacity(0.1))
+                .clipShape(Circle())
             
-            VStack(spacing: 12) {
-                Image(systemName: "lock.fill")
-                    .font(.system(size: 30))
-                    .foregroundStyle(.orange)
-                    .padding(12)
-                    .background(.white.opacity(0.1))
-                    .clipShape(Circle())
-                
-                Text("Premium requis")
-                    .font(.caption.bold())
-                    .foregroundStyle(.white)
-            }
+            Text("lock_premium")
+                .font(.caption.bold())
+                .foregroundStyle(.white)
         }
-        // Redirige vers la page d'achat de l'app
-        .widgetURL(URL(string: "prism://shop")) 
+        // ✅ C'EST ICI LA RÉPARATION MAGIQUE :
+        // On définit le fond noir via l'API officielle d'Apple
+        .containerBackground(for: .widget) {
+            Color.black.opacity(0.9)
+        }
+        // Redirection vers la boutique
+        .widgetURL(URL(string: "prism://shop"))
     }
 }
 
-// Petite extension pour vérifier le Premium facilement
+// Extension pour vérifier le paiement (inchangée)
 extension UserDefaults {
     static var isPremium: Bool {
-        // Remplace "isPremium" par la clé exacte que tu utilises dans ton StoreManager
         return UserDefaults(suiteName: AppConfig.appGroup)?.bool(forKey: "isPremium") ?? false
     }
 }

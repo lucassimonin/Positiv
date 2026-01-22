@@ -17,9 +17,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "A1E4271C2EAAC1D700BAF871"
-               BuildableName = "PositivWidgetsExtension.appex"
-               BlueprintName = "PositivWidgetsExtension"
-               ReferencedContainer = "container:Positiv.xcodeproj">
+               BuildableName = "PrismWidgetsExtension.appex"
+               BlueprintName = "PrismWidgetsExtension"
+               ReferencedContainer = "container:Prism.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -31,9 +31,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "A1E4270A2EAAC18100BAF871"
-               BuildableName = "Positiv.app"
-               BlueprintName = "Positiv"
-               ReferencedContainer = "container:Positiv.xcodeproj">
+               BuildableName = "Prism.app"
+               BlueprintName = "Prism"
+               ReferencedContainer = "container:Prism.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -63,18 +63,18 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A1E4271C2EAAC1D700BAF871"
-            BuildableName = "PositivWidgetsExtension.appex"
-            BlueprintName = "PositivWidgetsExtension"
-            ReferencedContainer = "container:Positiv.xcodeproj">
+            BuildableName = "PrismWidgetsExtension.appex"
+            BlueprintName = "PrismWidgetsExtension"
+            ReferencedContainer = "container:Prism.xcodeproj">
          </BuildableReference>
       </RemoteRunnable>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A1E4270A2EAAC18100BAF871"
-            BuildableName = "Positiv.app"
-            BlueprintName = "Positiv"
-            ReferencedContainer = "container:Positiv.xcodeproj">
+            BuildableName = "Prism.app"
+            BlueprintName = "Prism"
+            ReferencedContainer = "container:Prism.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <EnvironmentVariables>
@@ -108,9 +108,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A1E4270A2EAAC18100BAF871"
-            BuildableName = "Positiv.app"
-            BlueprintName = "Positiv"
-            ReferencedContainer = "container:Positiv.xcodeproj">
+            BuildableName = "Prism.app"
+            BlueprintName = "Prism"
+            ReferencedContainer = "container:Prism.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

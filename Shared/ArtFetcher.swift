@@ -1,6 +1,6 @@
 //
 //  ArtFetcher.swift
-//  Positiv
+//  Prism
 //
 //  Created by DnD-Luk on 25/10/2025.
 //
@@ -53,7 +53,6 @@ enum ArtFetcher {
         print("fetchAndCache")
         do {
             var item = try await fetchRandomFromMet()
-
             // Télécharge + downsample + sauvegarde localement (≤ 1024 px)
             if let localPath = try await downloadAndSaveImage(item.imageUrl) {
                 item = ArtItem(title: item.title,
@@ -62,14 +61,10 @@ enum ArtFetcher {
                                articleUrl: item.articleUrl,
                                imageUrl: item.imageUrl,
                                localImagePath: localPath)
-                print("💾 Image resized & saved:", localPath)
-            } else {
-                print("⚠️ No local image saved, will rely on remote (not recommended)")
             }
-
             ArtCache.save(item)
             await pushWidgetReloadSafely()
-            print("✅ Saved:", item.title)
+
         } catch {
             print("⚠️ fetch error:", error.localizedDescription)
         }

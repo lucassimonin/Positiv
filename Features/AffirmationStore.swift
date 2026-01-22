@@ -1,16 +1,16 @@
 //
 //  AffirmationStore.swift
-//  Positiv
+//  Prism
 //
 //  Created by DnD-Luk on 24/10/2025.
 //
 
 import Foundation
-import Combine          // ⬅️ ajoute ça
+import Combine
 import WidgetKit
 import SwiftUI 
 
-final class AffirmationStore: ObservableObject {   // ⬅️ conforme
+final class AffirmationStore: ObservableObject {
     @Published var items: [AffirmationItem] = []
     private var ud: UserDefaults { UserDefaults(suiteName: AppConfig.appGroup)! }
 
@@ -27,8 +27,6 @@ final class AffirmationStore: ObservableObject {   // ⬅️ conforme
             return
         }
         items = [
-            AffirmationItem(text: "Je progresse chaque jour ✨"),
-            AffirmationItem(text: "Je mérite le meilleur 💖")
         ]
     }
 

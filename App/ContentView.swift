@@ -1,6 +1,6 @@
 //
 //  ContentView.swift
-//  Positiv
+//  Prism
 //
 //  Created by DnD-Luk on 23/10/2025.
 //
@@ -12,17 +12,17 @@ struct MainTabs: View {
     var body: some View {
         TabView {
             AffirmationsEditorView()
-                .tabItem { Label("Affirmations", systemImage: "text.quote") }
+                .tabItem { Label("affirmation_widget_name", systemImage: "text.quote") }
 
             NavigationStack {
                 CountdownEditorView()
             }
-            .tabItem { Label("Countdown", systemImage: "calendar.badge.clock") }
+            .tabItem { Label("countdown_widget_name", systemImage: "calendar.badge.clock") }
             
             NavigationStack {
-                ArtSettingsView()
+                ArtEditorView()
             }
-            .tabItem { Label("Art settings", systemImage: "paintpalette.fill") }
+            .tabItem { Label("art_widget_name", systemImage: "paintpalette.fill") }
         }
     }
 }

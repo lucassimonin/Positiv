@@ -9,13 +9,15 @@
 /* Begin PBXBuildFile section */
 		A1231C112F2116E700524A7F /* AffirmationsEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1231C082F2116E700524A7F /* AffirmationsEditorView.swift */; };
 		A1231C122F2116E700524A7F /* AffirmationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1231C092F2116E700524A7F /* AffirmationStore.swift */; };
-		A1231C132F2116E700524A7F /* ArtSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1231C0A2F2116E700524A7F /* ArtSettingsView.swift */; };
+		A1231C132F2116E700524A7F /* ArtEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1231C0A2F2116E700524A7F /* ArtEditorView.swift */; };
 		A1231C142F2116E700524A7F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1231C0C2F2116E700524A7F /* ContentView.swift */; };
 		A1231C152F2116E700524A7F /* CountdownEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1231C0D2F2116E700524A7F /* CountdownEditorView.swift */; };
-		A1231C162F2116E700524A7F /* PositivApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1231C102F2116E700524A7F /* PositivApp.swift */; };
+		A1231C162F2116E700524A7F /* PrismApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1231C102F2116E700524A7F /* PrismApp.swift */; };
 		A1231C172F2116E700524A7F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1231C0B2F2116E700524A7F /* Assets.xcassets */; };
 		A1231C192F2116E700524A7F /* AffirmationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1231C092F2116E700524A7F /* AffirmationStore.swift */; };
 		A1231C2D2F211E3100524A7F /* StoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1231C292F211D5B00524A7F /* StoreManager.swift */; };
+		A1231C432F22480600524A7F /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = A1231C422F22480600524A7F /* Localizable.xcstrings */; };
+		A1231C442F22480600524A7F /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = A1231C422F22480600524A7F /* Localizable.xcstrings */; };
 		A13714DE2EABA89400D1E057 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13714DD2EABA89400D1E057 /* Constants.swift */; };
 		A13714DF2EABA89400D1E057 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13714DD2EABA89400D1E057 /* Constants.swift */; };
 		A137150F2EABF2F300D1E057 /* AffirmationsShared.swift in Sources */ = {isa = PBXBuildFile; fileRef = A137150E2EABF2F200D1E057 /* AffirmationsShared.swift */; };
@@ -26,7 +28,7 @@
 		A1607CDB2EAD180600C900E5 /* ArtFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1607CD22EACFB3600C900E5 /* ArtFetcher.swift */; };
 		A1E427202EAAC1D700BAF871 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1E4271F2EAAC1D700BAF871 /* WidgetKit.framework */; };
 		A1E427222EAAC1D700BAF871 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1E427212EAAC1D700BAF871 /* SwiftUI.framework */; };
-		A1E427332EAAC1DB00BAF871 /* PositivWidgetsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = A1E4271D2EAAC1D700BAF871 /* PositivWidgetsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		A1E427332EAAC1DB00BAF871 /* PrismWidgetsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = A1E4271D2EAAC1D700BAF871 /* PrismWidgetsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,7 +48,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				A1E427332EAAC1DB00BAF871 /* PositivWidgetsExtension.appex in Embed Foundation Extensions */,
+				A1E427332EAAC1DB00BAF871 /* PrismWidgetsExtension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -56,32 +58,31 @@
 /* Begin PBXFileReference section */
 		A1231C082F2116E700524A7F /* AffirmationsEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AffirmationsEditorView.swift; sourceTree = "<group>"; };
 		A1231C092F2116E700524A7F /* AffirmationStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AffirmationStore.swift; sourceTree = "<group>"; };
-		A1231C0A2F2116E700524A7F /* ArtSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtSettingsView.swift; sourceTree = "<group>"; };
+		A1231C0A2F2116E700524A7F /* ArtEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtEditorView.swift; sourceTree = "<group>"; };
 		A1231C0B2F2116E700524A7F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A1231C0C2F2116E700524A7F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		A1231C0D2F2116E700524A7F /* CountdownEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownEditorView.swift; sourceTree = "<group>"; };
 		A1231C0E2F2116E700524A7F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A1231C102F2116E700524A7F /* PositivApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositivApp.swift; sourceTree = "<group>"; };
+		A1231C102F2116E700524A7F /* PrismApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrismApp.swift; sourceTree = "<group>"; };
 		A1231C292F211D5B00524A7F /* StoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreManager.swift; sourceTree = "<group>"; };
-		A1231C2F2F211EF300524A7F /* Positiv.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Positiv.entitlements; sourceTree = "<group>"; };
-		A13714CE2EABA2A100D1E057 /* PositivWidgetsExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PositivWidgetsExtension.entitlements; sourceTree = "<group>"; };
+		A1231C422F22480600524A7F /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		A13714DD2EABA89400D1E057 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		A137150E2EABF2F200D1E057 /* AffirmationsShared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AffirmationsShared.swift; sourceTree = "<group>"; };
 		A1607CCD2EACF73200C900E5 /* ArtIShared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtIShared.swift; sourceTree = "<group>"; };
 		A1607CD22EACFB3600C900E5 /* ArtFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtFetcher.swift; sourceTree = "<group>"; };
-		A1E4270B2EAAC18100BAF871 /* Positiv.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Positiv.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		A1E4271D2EAAC1D700BAF871 /* PositivWidgetsExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = PositivWidgetsExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1E4270B2EAAC18100BAF871 /* Prism.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Prism.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1E4271D2EAAC1D700BAF871 /* PrismWidgetsExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = PrismWidgetsExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1E4271F2EAAC1D700BAF871 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		A1E427212EAAC1D700BAF871 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		A1E427342EAAC1DB00BAF871 /* Exceptions for "PositivWidgets" folder in "PositivWidgetsExtension" target */ = {
+		A1E427342EAAC1DB00BAF871 /* Exceptions for "PrismWidgets" folder in "PrismWidgetsExtension" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
 			);
-			target = A1E4271C2EAAC1D700BAF871 /* PositivWidgetsExtension */;
+			target = A1E4271C2EAAC1D700BAF871 /* PrismWidgetsExtension */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
@@ -91,12 +92,12 @@
 			path = Hub;
 			sourceTree = "<group>";
 		};
-		A1E427232EAAC1D700BAF871 /* PositivWidgets */ = {
+		A1E427232EAAC1D700BAF871 /* PrismWidgets */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				A1E427342EAAC1DB00BAF871 /* Exceptions for "PositivWidgets" folder in "PositivWidgetsExtension" target */,
+				A1E427342EAAC1DB00BAF871 /* Exceptions for "PrismWidgets" folder in "PrismWidgetsExtension" target */,
 			);
-			path = PositivWidgets;
+			path = PrismWidgets;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -124,11 +125,10 @@
 		A1231C262F211A7200524A7F /* App */ = {
 			isa = PBXGroup;
 			children = (
-				A1231C2F2F211EF300524A7F /* Positiv.entitlements */,
 				A1231C0B2F2116E700524A7F /* Assets.xcassets */,
 				A1231C0C2F2116E700524A7F /* ContentView.swift */,
 				A1231C0E2F2116E700524A7F /* Info.plist */,
-				A1231C102F2116E700524A7F /* PositivApp.swift */,
+				A1231C102F2116E700524A7F /* PrismApp.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -147,7 +147,7 @@
 				A1231C2A2F211D7800524A7F /* Hub */,
 				A1231C082F2116E700524A7F /* AffirmationsEditorView.swift */,
 				A1231C092F2116E700524A7F /* AffirmationStore.swift */,
-				A1231C0A2F2116E700524A7F /* ArtSettingsView.swift */,
+				A1231C0A2F2116E700524A7F /* ArtEditorView.swift */,
 				A1231C0D2F2116E700524A7F /* CountdownEditorView.swift */,
 			);
 			path = Features;
@@ -160,6 +160,7 @@
 				A1607CCD2EACF73200C900E5 /* ArtIShared.swift */,
 				A137150E2EABF2F200D1E057 /* AffirmationsShared.swift */,
 				A13714DD2EABA89400D1E057 /* Constants.swift */,
+				A1231C422F22480600524A7F /* Localizable.xcstrings */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -171,8 +172,7 @@
 				A1231C272F211A7D00524A7F /* Core */,
 				A1231C262F211A7200524A7F /* App */,
 				A13714DC2EABA82000D1E057 /* Shared */,
-				A13714CE2EABA2A100D1E057 /* PositivWidgetsExtension.entitlements */,
-				A1E427232EAAC1D700BAF871 /* PositivWidgets */,
+				A1E427232EAAC1D700BAF871 /* PrismWidgets */,
 				A1E4271E2EAAC1D700BAF871 /* Frameworks */,
 				A1E4270C2EAAC18100BAF871 /* Products */,
 			);
@@ -181,8 +181,8 @@
 		A1E4270C2EAAC18100BAF871 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A1E4270B2EAAC18100BAF871 /* Positiv.app */,
-				A1E4271D2EAAC1D700BAF871 /* PositivWidgetsExtension.appex */,
+				A1E4270B2EAAC18100BAF871 /* Prism.app */,
+				A1E4271D2EAAC1D700BAF871 /* PrismWidgetsExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -199,9 +199,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A1E4270A2EAAC18100BAF871 /* Positiv */ = {
+		A1E4270A2EAAC18100BAF871 /* Prism */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A1E427162EAAC18300BAF871 /* Build configuration list for PBXNativeTarget "Positiv" */;
+			buildConfigurationList = A1E427162EAAC18300BAF871 /* Build configuration list for PBXNativeTarget "Prism" */;
 			buildPhases = (
 				A1E427072EAAC18100BAF871 /* Sources */,
 				A1E427082EAAC18100BAF871 /* Frameworks */,
@@ -216,16 +216,16 @@
 			fileSystemSynchronizedGroups = (
 				A1231C2A2F211D7800524A7F /* Hub */,
 			);
-			name = Positiv;
+			name = Prism;
 			packageProductDependencies = (
 			);
 			productName = Positiv;
-			productReference = A1E4270B2EAAC18100BAF871 /* Positiv.app */;
+			productReference = A1E4270B2EAAC18100BAF871 /* Prism.app */;
 			productType = "com.apple.product-type.application";
 		};
-		A1E4271C2EAAC1D700BAF871 /* PositivWidgetsExtension */ = {
+		A1E4271C2EAAC1D700BAF871 /* PrismWidgetsExtension */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A1E427352EAAC1DB00BAF871 /* Build configuration list for PBXNativeTarget "PositivWidgetsExtension" */;
+			buildConfigurationList = A1E427352EAAC1DB00BAF871 /* Build configuration list for PBXNativeTarget "PrismWidgetsExtension" */;
 			buildPhases = (
 				A1E427192EAAC1D700BAF871 /* Sources */,
 				A1E4271A2EAAC1D700BAF871 /* Frameworks */,
@@ -236,13 +236,13 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				A1E427232EAAC1D700BAF871 /* PositivWidgets */,
+				A1E427232EAAC1D700BAF871 /* PrismWidgets */,
 			);
-			name = PositivWidgetsExtension;
+			name = PrismWidgetsExtension;
 			packageProductDependencies = (
 			);
 			productName = PositivWidgetsExtension;
-			productReference = A1E4271D2EAAC1D700BAF871 /* PositivWidgetsExtension.appex */;
+			productReference = A1E4271D2EAAC1D700BAF871 /* PrismWidgetsExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
@@ -263,12 +263,13 @@
 					};
 				};
 			};
-			buildConfigurationList = A1E427062EAAC18100BAF871 /* Build configuration list for PBXProject "Positiv" */;
+			buildConfigurationList = A1E427062EAAC18100BAF871 /* Build configuration list for PBXProject "Prism" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
+				fr,
 			);
 			mainGroup = A1E427022EAAC18100BAF871;
 			minimizedProjectReferenceProxies = 1;
@@ -277,8 +278,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A1E4270A2EAAC18100BAF871 /* Positiv */,
-				A1E4271C2EAAC1D700BAF871 /* PositivWidgetsExtension */,
+				A1E4270A2EAAC18100BAF871 /* Prism */,
+				A1E4271C2EAAC1D700BAF871 /* PrismWidgetsExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -288,6 +289,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1231C442F22480600524A7F /* Localizable.xcstrings in Resources */,
 				A1231C172F2116E700524A7F /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -296,6 +298,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1231C432F22480600524A7F /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,10 +313,10 @@
 				A13715102EABF2F300D1E057 /* AffirmationsShared.swift in Sources */,
 				A1231C112F2116E700524A7F /* AffirmationsEditorView.swift in Sources */,
 				A1231C122F2116E700524A7F /* AffirmationStore.swift in Sources */,
-				A1231C132F2116E700524A7F /* ArtSettingsView.swift in Sources */,
+				A1231C132F2116E700524A7F /* ArtEditorView.swift in Sources */,
 				A1231C142F2116E700524A7F /* ContentView.swift in Sources */,
 				A1231C152F2116E700524A7F /* CountdownEditorView.swift in Sources */,
-				A1231C162F2116E700524A7F /* PositivApp.swift in Sources */,
+				A1231C162F2116E700524A7F /* PrismApp.swift in Sources */,
 				A1231C2D2F211E3100524A7F /* StoreManager.swift in Sources */,
 				A1607CCE2EACF73800C900E5 /* ArtIShared.swift in Sources */,
 				A1607CD42EACFB3700C900E5 /* ArtFetcher.swift in Sources */,
@@ -337,7 +340,7 @@
 /* Begin PBXTargetDependency section */
 		A1E427322EAAC1DB00BAF871 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = A1E4271C2EAAC1D700BAF871 /* PositivWidgetsExtension */;
+			target = A1E4271C2EAAC1D700BAF871 /* PrismWidgetsExtension */;
 			targetProxy = A1E427312EAAC1DB00BAF871 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -404,6 +407,7 @@
 				SDKROOT = iphoneos;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -462,6 +466,7 @@
 				SDKROOT = iphoneos;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -472,10 +477,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
-				CODE_SIGN_ENTITLEMENTS = App/Positiv.entitlements;
+				CODE_SIGN_ENTITLEMENTS = App/Prism.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = PositivWidgets/Assets.xcassets;
+				DEVELOPMENT_ASSET_PATHS = PrismWidgets/Assets.xcassets;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = App/Info.plist;
@@ -492,7 +497,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.lsimonin.Positiv;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lsimonin.myprism;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -514,10 +519,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
-				CODE_SIGN_ENTITLEMENTS = App/Positiv.entitlements;
+				CODE_SIGN_ENTITLEMENTS = App/Prism.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = PositivWidgets/Assets.xcassets;
+				DEVELOPMENT_ASSET_PATHS = PrismWidgets/Assets.xcassets;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = App/Info.plist;
@@ -534,7 +539,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.lsimonin.Positiv;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lsimonin.myprism;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -555,11 +560,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CODE_SIGN_ENTITLEMENTS = PositivWidgetsExtension.entitlements;
+				CODE_SIGN_ENTITLEMENTS = PrismWidgetsExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = PositivWidgets/Info.plist;
+				INFOPLIST_FILE = PrismWidgets/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = PositivWidgets;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -568,7 +573,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.lsimonin.Positiv.PositivWidgets;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lsimonin.myprism.Widget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -585,11 +590,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CODE_SIGN_ENTITLEMENTS = PositivWidgetsExtension.entitlements;
+				CODE_SIGN_ENTITLEMENTS = PrismWidgetsExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = PositivWidgets/Info.plist;
+				INFOPLIST_FILE = PrismWidgets/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = PositivWidgets;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -598,7 +603,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.lsimonin.Positiv.PositivWidgets;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lsimonin.myprism.Widget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -613,7 +618,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A1E427062EAAC18100BAF871 /* Build configuration list for PBXProject "Positiv" */ = {
+		A1E427062EAAC18100BAF871 /* Build configuration list for PBXProject "Prism" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A1E427142EAAC18300BAF871 /* Debug */,
@@ -622,7 +627,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A1E427162EAAC18300BAF871 /* Build configuration list for PBXNativeTarget "Positiv" */ = {
+		A1E427162EAAC18300BAF871 /* Build configuration list for PBXNativeTarget "Prism" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A1E427172EAAC18300BAF871 /* Debug */,
@@ -631,7 +636,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A1E427352EAAC1DB00BAF871 /* Build configuration list for PBXNativeTarget "PositivWidgetsExtension" */ = {
+		A1E427352EAAC1DB00BAF871 /* Build configuration list for PBXNativeTarget "PrismWidgetsExtension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A1E427362EAAC1DB00BAF871 /* Debug */,
